@@ -1,6 +1,21 @@
 ####################################################################################################
 
-from math import log, ceil
+import math
+
+####################################################################################################
+
+def number_of_digits_of(x):
+
+    if x <= 1:
+        return 0
+    else:
+        return int(math.log10(x)) +1
+
+####################################################################################################
+
+def significant_digits_of(x, number_of_significant_digits):
+
+    return int(x * math.pow(10., number_of_significant_digits - number_of_digits_of(x)))
 
 ####################################################################################################
 
@@ -8,12 +23,13 @@ class ValuesSeries(object):
 
     ##############################################
 
-    def __init__(self, name, tolerances, values):
+    def __init__(self, name, number_of_digits, tolerances, values):
 
         self.name = name
+        self.number_of_digits = number_of_digits
         self.number = int(name[1:])
         self.tolerances = tolerances
-        self.values = values
+        self.values = sorted(values)
 
     ##############################################
 
@@ -33,35 +49,47 @@ class ValuesSeries(object):
 
         return value in self.values
 
+    ##############################################
+
+    def tolerance_min(self):
+
+        return min(self.tolerances)
+
+    ##############################################
+
+    def tolerance_max(self):
+
+        return max(self.tolerances)
+
 ####################################################################################################
 
-# tolerance: 20%
 E6 = ValuesSeries(name='E6',
+                  number_of_digits=2,
                   tolerances=(20,),
                   values=(10, 15, 22, 33, 47, 68))
 
-# tolerance: 10%
 E12 = ValuesSeries(name='E12',
-                  tolerances=(10,),
+                   number_of_digits=2,
+                   tolerances=(10,),
                    values=(10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82))
 
-# tolerance: 5% 1%
 E24 = ValuesSeries(name='E24',
-                  tolerances=(5, 1),
+                   number_of_digits=2,
+                   tolerances=(5, 1),
                    values=(10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82,
                            11, 13, 16, 20, 24, 30, 36, 43, 51, 62, 75, 91))
 
-# tolerance: 2%
 E48 = ValuesSeries(name='E48',
-                  tolerances=(2,),
+                   number_of_digits=3,
+                   tolerances=(2,),
                    values=(100, 121, 147, 178, 215, 261, 316, 383, 464, 562, 681, 825,
                            105, 127, 154, 187, 226, 274, 332, 402, 487, 590, 715, 866,
                            110, 133, 162, 196, 237, 287, 348, 422, 511, 619, 750, 909,
                            115, 140, 169, 205, 249, 301, 365, 442, 536, 649, 787, 953))
 
-# tolerance: 1%
 E96 = ValuesSeries(name='E96',
-                  tolerances=(1,),
+                   number_of_digits=3,
+                   tolerances=(1,),
                    values=(100, 121, 147, 178, 215, 261, 316, 383, 464, 562, 681, 825,
                            102, 124, 150, 182, 221, 267, 324, 392, 475, 576, 698, 845,
                            105, 127, 154, 187, 226, 274, 332, 402, 487, 590, 715, 866,
@@ -71,8 +99,8 @@ E96 = ValuesSeries(name='E96',
                            115, 140, 169, 205, 249, 301, 365, 442, 536, 649, 787, 953,
                            118, 143, 174, 210, 255, 309, 374, 453, 549, 665, 806, 976))
 
-# tolerance: 0.5% 0.25% 0.1%
 E192 = ValuesSeries(name='E192',
+                    number_of_digits=3,
                     tolerances=(0.5, 0.25, 0.1),
                     values=(100, 121, 147, 178, 215, 261, 316, 383, 464, 562, 681, 825,
                             101, 123, 149, 180, 218, 264, 320, 388, 470, 569, 690, 835,
@@ -90,6 +118,19 @@ E192 = ValuesSeries(name='E192',
                             117, 142, 172, 208, 252, 305, 370, 448, 542, 657, 796, 965,
                             118, 143, 174, 210, 255, 309, 374, 453, 549, 665, 806, 976,
                             120, 145, 176, 213, 258, 312, 379, 459, 556, 673, 816, 988))
+
+####################################################################################################
+
+def series_iterator(number_of_digits_min=2,
+                    number_of_digits_max=3,
+                    tolerance_min=1,
+                    tolerance_max=5):
+
+    for series in E6, E12, E24, E48, E96, E192:
+        if (number_of_digits_min <= series.number_of_digits <= number_of_digits_max and
+            series.tolerance_min() >= tolerance_min and
+            series.tolerance_max() <= tolerance_max):
+            yield series
 
 ####################################################################################################
 
@@ -530,11 +571,48 @@ if __name__ == '__main__':
     # decode_resistor(('brown', 'black', 'red', 'gold'))
     # decode_resistor(('brown', 'black', 'black', 'red'))
     # decode_resistor(('red', 'violet', 'red', 'gold'))
-    decode_resistor(('brown', 'black', 'black', 'orange', 'brown')) # 100k E96 1%
-    decode_resistor(('brown', 'black', 'black', 'black', 'brown')) # 100R E96 1%
-    decode_resistor(('orange', 'orange', 'silver', 'gold'))
-    decode_resistor(('orange', 'orange', 'gold', 'gold'))
-    decode_resistor(('brown', 'red', 'black', 'orange', 'brown'))
+    # decode_resistor(('brown', 'black', 'black', 'orange', 'brown')) # 100k E96 1%
+    # decode_resistor(('brown', 'black', 'black', 'black', 'brown')) # 100R E96 1%
+    # decode_resistor(('orange', 'orange', 'silver', 'gold'))
+    # decode_resistor(('orange', 'orange', 'gold', 'gold'))
+    # decode_resistor(('brown', 'red', 'black', 'orange', 'brown'))
+
+    value_min = 10.
+    value_max = 80.
+    number_of_digits_min = 2
+    number_of_digits_max = 3
+    tolerance_min = 1
+    tolerance_max = 5
+
+    for series in series_iterator(number_of_digits_min=number_of_digits_min,
+                                  number_of_digits_max=number_of_digits_max,
+                                  tolerance_min=tolerance_min,
+                                  tolerance_max=tolerance_max):
+
+        significant_digits_min, significant_digits_max = \
+            sorted([significant_digits_of(value, series.number_of_digits)
+                    for value in value_min, value_max])
+        print 'Significant digits:', significant_digits_min, significant_digits_max
+        for value in series.values:
+            if significant_digits_min <= value <= significant_digits_max:
+                ratio = value_min / value
+                # print series.name, value, ratio
+                if ratio >= 1e-3: # check GR
+                    for multiplier in xrange(-2, 9):
+                        if ratio <= 10**multiplier:
+                            break
+                    # print series.name, value, ratio, 10**multiplier, COLOUR_NAMES[multiplier +2]
+                    if series.number_of_digits == 2:
+                        digit1 = int(value / 10)
+                        digit2 = value - digit1 * 10
+                        digits = [digit1, digit2]
+                    else:
+                        digit1 = int(value / 100)
+                        digit2 = int((value - digit1 * 100) / 10)
+                        digit3 = value - (digit1 * 10 + digit2) * 10
+                        digits = [digit1, digit2, digit3]
+                    colours = [COLOUR_NAMES[digit +2] for digit in digits]
+                    print series.name, value, 10**multiplier, format_value(value * 10**multiplier), colours, COLOUR_NAMES[multiplier +2]
 
 ####################################################################################################
 #
