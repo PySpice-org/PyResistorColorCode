@@ -53,7 +53,7 @@ E24 = ValuesSeries(name='E24',
 
 # tolerance: 2%
 E48 = ValuesSeries(name='E48',
-                  tolerances=(2),
+                  tolerances=(2,),
                    values=(100, 121, 147, 178, 215, 261, 316, 383, 464, 562, 681, 825,
                            105, 127, 154, 187, 226, 274, 332, 402, 487, 590, 715, 866,
                            110, 133, 162, 196, 237, 287, 348, 422, 511, 619, 750, 909,
@@ -61,7 +61,7 @@ E48 = ValuesSeries(name='E48',
 
 # tolerance: 1%
 E96 = ValuesSeries(name='E96',
-                  tolerances=(1),
+                  tolerances=(1,),
                    values=(100, 121, 147, 178, 215, 261, 316, 383, 464, 562, 681, 825,
                            102, 124, 150, 182, 221, 267, 324, 392, 475, 576, 698, 845,
                            105, 127, 154, 187, 226, 274, 332, 402, 487, 590, 715, 866,
@@ -158,24 +158,6 @@ def format_value(x):
 
 ####################################################################################################
 
-def significant_digits(x, number_of_significant_digits):
-
-    # number_of_digits = int(ceil(log(x)/log(10))) + 1
-    # significant_digits = int(x * 10**(number_of_significant_digits - number_of_digits))
-
-    # print x, number_of_significant_digits
-    x *= 1000
-    number_of_digits = 0
-    while x >= 1:
-        x /= 10.
-        number_of_digits += 1
-    significant_digits = int(x * 10**number_of_significant_digits)
-        
-    # print x, number_of_digits -3, significant_digits
-    return significant_digits
-
-####################################################################################################
-
 class ColourCode(object):
 
     ##############################################
@@ -258,22 +240,30 @@ class Resistor(object):
         if value is not None:
             self.value = value
             self.number_of_digits = number_of_digits
-            self.digit1=None
-            self.digit2=None
-            self.digit3=None
-            self.multiplier=None
+            # Not implemented
+            self.digit1 = None
+            self.digit2 = None
+            self.digit3 = None
+            self.multiplier = None
+            self.digit1_colour = None
+            self.digit2_colour = None
+            self.digit3_colour = None
+            self.multiplier_colour = None
+            self.significant_digits  =  None
         else:
-            self.digit1=digit1
-            self.digit2=digit2
-            self.digit3=digit3
-            self.multiplier=multiplier
-            value = COLOUR_CODES[digit1].digit * 10 + COLOUR_CODES[digit2].digit
-            if digit3 is not None:
-                value = value * 10 + COLOUR_CODES[digit3].digit
-                self.number_of_digits = 3
-            else:
-                self.number_of_digits = 2
-            self.value = value * COLOUR_CODES[multiplier].multiplier
+            self.digit1_colour = digit1
+            self.digit2_colour = digit2
+            self.digit3_colour = digit3
+            self.multiplier_colour = multiplier
+            self._compute_value_from_colours()
+
+        self._init_tolerance(tolerance)
+        self._init_temperature_coefficient(temperature_coefficient)
+        self.series = self._guess_series()
+
+    ##############################################
+
+    def _init_tolerance(self, tolerance):
 
         if tolerance is None:
             self.tolerance = None
@@ -285,6 +275,10 @@ class Resistor(object):
             except KeyError:
                 self.tolerance = float(tolerance)
 
+    ##############################################
+
+    def _init_temperature_coefficient(self, temperature_coefficient):
+
         if temperature_coefficient is None:
             self.temperature_coefficient = None
             self.temperature_coefficient_colour = None
@@ -295,7 +289,24 @@ class Resistor(object):
             except KeyError:
                 self.temperature_coefficient = float(temperature_coefficient)
 
-        self.series = self._guess_series()
+    ##############################################
+
+    def _compute_value_from_colours(self):
+
+        try:
+            self.digit1 = COLOUR_CODES[self.digit1_colour].digit
+            self.digit2 = COLOUR_CODES[self.digit2_colour].digit
+        except:
+            raise ValueError("Forbidden digit")
+        self.multiplier = COLOUR_CODES[self.multiplier_colour].multiplier
+        self.significant_digits = self.digit1 * 10 + self.digit2
+        if self.digit3_colour is not None:
+            self.digit3 = COLOUR_CODES[self.digit3_colour].digit
+            self.significant_digits = self.significant_digits * 10 + self.digit3
+            self.number_of_digits = 3
+        else:
+            self.number_of_digits = 2
+        self.value = self.significant_digits * self.multiplier
 
     ##############################################
 
@@ -315,21 +326,20 @@ class Resistor(object):
 
     def _guess_series(self):
 
-        resitor_series = None
         if self.number_of_digits is not None:
-            number_of_significant_digits = self.number_of_digits
             if self.number_of_digits == 2:
                 list_of_series = (E6, E12, E24)
             else:
                 list_of_series = (E48, E96, E192)
         else:
             list_of_series = (E6, E12, E24, E48, E96, E192)
-            number_of_significant_digits = 3
-        digit_value = significant_digits(self.value, number_of_significant_digits)
+
+        resitor_series = None
         for series in list_of_series:
+            # print '  ', self.significant_digits, self.tolerance, series.name, series.tolerances
             if resitor_series is not None:
                 break
-            if digit_value in series:
+            if self.significant_digits in series:
                 if self.tolerance is None:
                     resitor_series = series
                 else:
@@ -367,19 +377,22 @@ class Resistor(object):
         return ' '.join(x for x in ("%s R series %s" % (format_value(self.value), series_name),
                                     tolerance_str,
                                     temperature_coefficient_str,
-                                    self.digit1,
-                                    self.digit2,
-                                    self.digit3,
-                                    self.multiplier,
+                                    self.digit1_colour,
+                                    self.digit2_colour,
+                                    self.digit3_colour,
+                                    self.multiplier_colour,
                                     str(self.number_of_digits) + 'd',
                                     )
                         if x)
 
     ##############################################
 
-    def digit_iterator(self):
+    def digit_colour_iterator(self):
 
-        return iter([digit for digit in self.digit1, self.digit2, self.digit3, self.multiplier
+        return iter([digit for digit in (self.digit1_colour,
+                                         self.digit2_colour,
+                                         self.digit3_colour,
+                                         self.multiplier_colour)
                      if digit is not None])
             
 ####################################################################################################
@@ -390,11 +403,19 @@ class ResistorDecoder(object):
 
     def _append_hypothesis(self, **keys):
 
+        print 'Try:', keys
         try:
             resistor = Resistor(**keys)
-            if resistor.series is not None:
+            # print resistor.value, resistor.series
+            # Resistor value must exists in a series and
+            # its tolerance must be defined if there is a band for it
+            if (resistor.series is not None and
+                not (resistor.tolerance_colour is not None  and resistor.tolerance is None) and
+                # remove doublon for symetric cases
+                resistor.value not in [x.value for x in self.hypotheses]):
                 self.hypotheses.append(resistor)
         except:
+            # raise
             pass
 
     ##############################################
@@ -407,6 +428,7 @@ class ResistorDecoder(object):
         
         self.hypotheses = []
         if number_of_colours == 3:
+            # 2 digits
             self._append_hypothesis(digit1=colour_names[0],
                                     digit2=colour_names[1],
                                     multiplier=colour_names[2],
@@ -416,6 +438,7 @@ class ResistorDecoder(object):
                                     multiplier=colour_names[0],
                                     )
         if number_of_colours == 4:
+            # 2 digits + m + %
             self._append_hypothesis(digit1=colour_names[0],
                                     digit2=colour_names[1],
                                     multiplier=colour_names[2],
@@ -426,6 +449,7 @@ class ResistorDecoder(object):
                                     multiplier=colour_names[1],
                                     tolerance=colour_names[0],
                                     )
+            # 3 digits + m
             self._append_hypothesis(digit1=colour_names[0],
                                     digit2=colour_names[1],
                                     digit3=colour_names[2],
@@ -437,6 +461,7 @@ class ResistorDecoder(object):
                                     multiplier=colour_names[0],
                                     )
         if number_of_colours == 5:
+            # 2 digits + m + % + T
             self._append_hypothesis(digit1=colour_names[0],
                                     digit2=colour_names[1],
                                     multiplier=colour_names[2],
@@ -449,6 +474,7 @@ class ResistorDecoder(object):
                                     tolerance=colour_names[1],
                                     temperature_coefficient=colour_names[0],
                                     )
+            # 3 digits + m + %
             self._append_hypothesis(digit1=colour_names[0],
                                     digit2=colour_names[1],
                                     digit3=colour_names[2],
@@ -462,6 +488,7 @@ class ResistorDecoder(object):
                                     tolerance=colour_names[0],
                                     )
         if number_of_colours == 6:
+            # 3 digits + m + % + T
             self._append_hypothesis(digit1=colour_names[0],
                                     digit2=colour_names[1],
                                     digit3=colour_names[2],
@@ -499,10 +526,15 @@ if __name__ == '__main__':
         for i, hypothesis in enumerate(sorted_hypotheses):
             print "hypothese %u: %s" % (i +1, hypothesis)
         
-    decode_resistor(('brown', 'black', 'red'))
-    decode_resistor(('brown', 'black', 'red', 'gold'))
-    decode_resistor(('brown', 'black', 'black', 'red'))
-    decode_resistor(('red', 'violet', 'red', 'gold'))
+    # decode_resistor(('brown', 'black', 'red'))
+    # decode_resistor(('brown', 'black', 'red', 'gold'))
+    # decode_resistor(('brown', 'black', 'black', 'red'))
+    # decode_resistor(('red', 'violet', 'red', 'gold'))
+    decode_resistor(('brown', 'black', 'black', 'orange', 'brown')) # 100k E96 1%
+    decode_resistor(('brown', 'black', 'black', 'black', 'brown')) # 100R E96 1%
+    decode_resistor(('orange', 'orange', 'silver', 'gold'))
+    decode_resistor(('orange', 'orange', 'gold', 'gold'))
+    decode_resistor(('brown', 'red', 'black', 'orange', 'brown'))
 
 ####################################################################################################
 #

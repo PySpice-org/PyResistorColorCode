@@ -71,7 +71,7 @@ class ResistorPixmap(object):
             painter.setPen(QtGui.QPen(COLOURS[colour], 4.))
             painter.drawLine(x_band, y_band_top, x_band, y_band_bottom)
 
-        for colour in self._resitor.digit_iterator():
+        for colour in self._resitor.digit_colour_iterator():
             paint_band(colour)
             x_band += small_band_gap
         x_band += large_band_gap
@@ -221,6 +221,7 @@ class ColourMatrix(QtCore.QObject):
         self._reset_band_button(band)
         self._band_status[band] = colour
         button = self._button(band, colour)
+        button.setChecked(True)
         button.setText(self.CHECKED_TEXT)
         self._emit_value_changed()
 
