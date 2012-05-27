@@ -8,9 +8,9 @@ import sys
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import pyqtSignal, pyqtSlot, Qt
 
-#############################################################################################
+####################################################################################################
 
-from ResistorColorCode import COLOUR_NAMES, Resistor, ResistorDecoder, format_value
+from PyElectronic.ResistorColorCode import COLOUR_NAMES, Resistor, ResistorDecoder, format_value
 
 ####################################################################################################
 

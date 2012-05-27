@@ -1,0 +1,2 @@
+include CHANGES.txt LICENSE.txt MANIFEST.in
+prune build
