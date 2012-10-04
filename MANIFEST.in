@@ -1,2 +1,20 @@
-include CHANGES.txt LICENSE.txt MANIFEST.in
+include .pyflymakerc
+include CHANGES.txt
+include GPL-V3.0.txt
+include LICENSE.txt
+include MANIFEST.in
+include TODO.rst
+include make-release.sh
+include pylintrc.ini
+include setenv.sh start.sh
+include setup_data.py
+include tools/RstFactory.py
+include tools/check-for-missing-files
+include tools/check-license
+include tools/clean
+include tools/generate-rst
+include tools/perl-grep
+include tools/replace
+include tools/update-tags
+include unit-test
 prune build

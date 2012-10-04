@@ -1,26 +1,21 @@
-#! /usr/bin/env python
+#! /bin/bash
 
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools
+# PyElectronic - Python Electronic Tools 
 # Copyright (C) Salvaire Fabrice 2012 
 # 
 ####################################################################################################
 
-####################################################################################################
-
-import os
-from distutils.core import setup
-# from setuptools import setup
-
-####################################################################################################
-
-execfile('setup_data.py')
-
-setup(**setup_dict)
+for d in bin PyElectronic ; do
+  for i in `find $d -name '*.py' | sort -n` ; do
+    echo Check $i
+    pylint --output-format=parseable --rcfile=pylintrc.ini --errors-only $i
+  done
+done
 
 ####################################################################################################
-#
+# 
 # End
-#
+# 
 ####################################################################################################

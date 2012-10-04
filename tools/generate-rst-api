@@ -1,26 +1,27 @@
 #! /usr/bin/env python
+# -*- Python -*-
 
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools
+# PyElectronic - Python Electronic Tools 
 # Copyright (C) Salvaire Fabrice 2012 
 # 
 ####################################################################################################
 
 ####################################################################################################
 
-import os
-from distutils.core import setup
-# from setuptools import setup
+from RstFactory import RstFactory
 
 ####################################################################################################
 
-execfile('setup_data.py')
+module_path = 'PyElectronic'
+rst_directory = 'doc/sphinx/source/api'
+excluded_directory = ()
 
-setup(**setup_dict)
+rst_factory = RstFactory(module_path, rst_directory, excluded_directory) 
 
 ####################################################################################################
-#
+# 
 # End
-#
+# 
 ####################################################################################################

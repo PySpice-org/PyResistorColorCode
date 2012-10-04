@@ -1,23 +1,23 @@
-#! /usr/bin/env python
+#! /bin/bash
 
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools
+# PyElectronic - Python Electronic Tools 
 # Copyright (C) Salvaire Fabrice 2012 
 # 
 ####################################################################################################
 
 ####################################################################################################
 
-import os
-from distutils.core import setup
-# from setuptools import setup
+tagfile=`dirname $0 `/../TAGS
 
-####################################################################################################
+# -e Enable etags mode
 
-execfile('setup_data.py')
+ctags -f $tagfile -e --recurse --languages=python --exclude="__init__.py"
 
-setup(**setup_dict)
+if [ $? != 0 ]; then
+  ctags --version
+fi
 
 ####################################################################################################
 #
