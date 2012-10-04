@@ -4,3 +4,5 @@ build
 dist
 MANIFEST
 TAGS
+doc/build
+doc/sphinx/old-api
