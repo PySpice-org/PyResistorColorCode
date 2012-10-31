@@ -5,8 +5,10 @@
 .. toctree::
   PyElectronic/Config
   PyElectronic/GuiTools
+  PyElectronic/Help
   PyElectronic/Math
-  PyElectronic/ResistorColorCode
+  PyElectronic/ResistorColourCode
+  PyElectronic/ResistorDecoderApplication
   PyElectronic/ResistorWidget
 
 .. End
