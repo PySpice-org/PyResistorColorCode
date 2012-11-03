@@ -583,24 +583,49 @@ class ResistorDecoder(object):
 
     ##############################################
 
-    def _append_hypothesis(self, **keys):
+    def _append_hypothesis(self, resistor_configuration, hypotheses):
 
         """ Append an hypothesis if it is acceptable. """
 
         # print 'Try:', keys
         try:
-            resistor = Resistor(**keys)
+            resistor = Resistor(**resistor_configuration)
             # print resistor.value, resistor.series
             # Resistor value must exists in a series and
             # its tolerance must be defined if there is a colour assigned to it
             if (resistor.series is not None and
                 not (resistor.tolerance_colour is not None and resistor.tolerance is None) and
                 # remove doublon for symetric cases
-                resistor.value not in [x.value for x in self.hypotheses]):
-                self.hypotheses.append(resistor)
+                resistor.value not in [x.value for x in hypotheses]):
+                hypotheses.append(resistor)
         except:
             # raise
             pass
+
+    ##############################################
+
+    def _decode(self, colour_names, hypotheses):
+
+        """ Decode a resistor in one direction from the given list of colour *colour_names*. """
+
+        two_digits_bands = ['digit1', 'digit2', 'multiplier']
+        three_digits_bands = ['digit1', 'digit2', 'digit3', 'multiplier']
+
+        number_of_colours = len(colour_names)
+        if number_of_colours == 3:
+            configurations = (two_digits_bands,)
+        elif number_of_colours == 4:
+            configurations = (two_digits_bands + ['tolerance'],
+                              three_digits_bands)
+        elif number_of_colours == 5:
+            configurations = (two_digits_bands + ['tolerance', 'temperature_coefficient'],
+                              three_digits_bands + ['tolerance'])
+        elif number_of_colours == 6:
+            configurations = (three_digits_bands + ['tolerance', 'temperature_coefficient'],)
+
+        for band_configuration in configurations:
+            resistor_configuration = {band:colour_names[i] for i, band in enumerate(band_configuration)}
+            self._append_hypothesis(resistor_configuration, hypotheses)
 
     ##############################################
 
@@ -611,88 +636,14 @@ class ResistorDecoder(object):
         number_of_colours = len(colour_names)
         if number_of_colours < 3:
             raise ValueError("Too few bands")
+        elif number_of_colours > 6:
+            raise ValueError("Too many bands")
 
-        # Fixme: simplify the code
-        
-        self.hypotheses = []
-        if number_of_colours == 3:
-            # 2 digits
-            self._append_hypothesis(digit1=colour_names[0],
-                                    digit2=colour_names[1],
-                                    multiplier=colour_names[2],
-                                    )
-            self._append_hypothesis(digit1=colour_names[2],
-                                    digit2=colour_names[1],
-                                    multiplier=colour_names[0],
-                                    )
-        if number_of_colours == 4:
-            # 2 digits + m + %
-            self._append_hypothesis(digit1=colour_names[0],
-                                    digit2=colour_names[1],
-                                    multiplier=colour_names[2],
-                                    tolerance=colour_names[3],
-                                    )
-            self._append_hypothesis(digit1=colour_names[3],
-                                    digit2=colour_names[2],
-                                    multiplier=colour_names[1],
-                                    tolerance=colour_names[0],
-                                    )
-            # 3 digits + m
-            self._append_hypothesis(digit1=colour_names[0],
-                                    digit2=colour_names[1],
-                                    digit3=colour_names[2],
-                                    multiplier=colour_names[3],
-                                    )
-            self._append_hypothesis(digit1=colour_names[3],
-                                    digit2=colour_names[2],
-                                    digit3=colour_names[1],
-                                    multiplier=colour_names[0],
-                                    )
-        if number_of_colours == 5:
-            # 2 digits + m + % + T
-            self._append_hypothesis(digit1=colour_names[0],
-                                    digit2=colour_names[1],
-                                    multiplier=colour_names[2],
-                                    tolerance=colour_names[3],
-                                    temperature_coefficient=colour_names[4],
-                                    )
-            self._append_hypothesis(digit1=colour_names[4],
-                                    digit2=colour_names[3],
-                                    multiplier=colour_names[2],
-                                    tolerance=colour_names[1],
-                                    temperature_coefficient=colour_names[0],
-                                    )
-            # 3 digits + m + %
-            self._append_hypothesis(digit1=colour_names[0],
-                                    digit2=colour_names[1],
-                                    digit3=colour_names[2],
-                                    multiplier=colour_names[3],
-                                    tolerance=colour_names[4],
-                                    )
-            self._append_hypothesis(digit1=colour_names[4],
-                                    digit2=colour_names[3],
-                                    digit3=colour_names[2],
-                                    multiplier=colour_names[1],
-                                    tolerance=colour_names[0],
-                                    )
-        if number_of_colours == 6:
-            # 3 digits + m + % + T
-            self._append_hypothesis(digit1=colour_names[0],
-                                    digit2=colour_names[1],
-                                    digit3=colour_names[2],
-                                    multiplier=colour_names[3],
-                                    tolerance=colour_names[4],
-                                    temperature_coefficient=colour_names[5],
-                                    )
-            self._append_hypothesis(digit1=colour_names[5],
-                                    digit2=colour_names[4],
-                                    digit3=colour_names[3],
-                                    multiplier=colour_names[2],
-                                    tolerance=colour_names[1],
-                                    temperature_coefficient=colour_names[0],
-                                    )
+        hypotheses = []
+        self._decode(colour_names, hypotheses)
+        self._decode(list(reversed(colour_names)), hypotheses)
 
-        return self.hypotheses
+        return hypotheses
 
 ####################################################################################################
 #
