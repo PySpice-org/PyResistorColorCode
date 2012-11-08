@@ -26,16 +26,19 @@ def read(file_name):
 ####################################################################################################
 
 setup_dict = dict(
-    name='PyElectronic',
-    version='1.0',
+    name='pyelectronic',
+    version='0.1.0',
     author='Fabrice Salvaire',
     author_email='fabrice.salvaire@orange.fr',
     description='Python Tools for Electronic',
     license = "GPLv3",
     keywords = "electronic tools",
     url='http://fabrice-salvaire.pagesperso-orange.fr/software/index.html',
-    scripts=['bin/colour-resistor-decoder'],
+    scripts=['bin/resistor-decoder'],
     packages=['PyElectronic'],
+    data_files = [('share/PyElectronic/icons',['share/icons/resistor.svg']),
+                  ('share/applications', ['spec/resistor-decoder.desktop']),
+                  ],
     long_description=read('README'),
     # cf. http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -47,7 +50,7 @@ setup_dict = dict(
         "Programming Language :: Python :: 2.7",
         ],
     install_requires=[
-        'pyqt>=4.8',
+        'pyqt>=4.9',
         ],
     )
 

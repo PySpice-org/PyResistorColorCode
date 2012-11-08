@@ -1,33 +1,20 @@
 ####################################################################################################
-#
-# Make a Release
-#
+# 
+# PyElectronic - Python Electronic Tools
+# Copyright (C) Salvaire Fabrice 2012 
+# 
 ####################################################################################################
 
-# Set the environment
-. setenv.sh 
-
-# Cleanup the repository
-./tools/clean 
-
-# Check licence
-./tools/check-license
-
-# Make Source Tar Archive
-python setup.py sdist
-
-# Build
-python setup.py bdist
-python setup.py bdist_rpm
-# python setup.py upload
-
-# Check file list in archive
-./tools/check-for-missing-files
-
-# Test RPM
+""" This module defines configuration settings. """
 
 ####################################################################################################
-#
+
+# Fixme: should be overwritten by setup.py
+#share_directory = 'share'
+share_directory = '/usr/share/PyElectronic'
+
+####################################################################################################
+# 
 # End
-#
+# 
 ####################################################################################################

@@ -58,7 +58,7 @@ file_names_in_tar = [absolut_to_relative_path(x, root_prefix)
 
 for path, directories, file_names in os.walk(project_path):
     directory = absolut_to_relative_path(path, project_path)
-    for sub_directory in ('.bzr', 'build', 'dist'):
+    for sub_directory in ('.bzr', '.git', 'build', 'dist'):
         try:
             index = directories.index(sub_directory)
             del directories[index]

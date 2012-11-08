@@ -1,3 +1,5 @@
+include	.bzrignore
+include .gitignore
 include .pyflymakerc
 include CHANGES.txt
 include GPL-V3.0.txt
@@ -8,13 +10,10 @@ include make-release.sh
 include pylintrc.ini
 include setenv.sh start.sh
 include setup_data.py
-include tools/RstFactory.py
-include tools/check-for-missing-files
-include tools/check-license
-include tools/clean
-include tools/generate-rst
-include tools/perl-grep
-include tools/replace
-include tools/update-tags
-include unit-test
+recursive-include doc *
+recursive-include share *
+recursive-include spec *.spec *.desktop
+recursive-include tools *
+recursive-include unit-test *.py
 prune build
+prune doc/sphinx/build

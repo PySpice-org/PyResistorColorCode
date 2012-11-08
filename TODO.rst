@@ -2,11 +2,18 @@
  Release
 =========
 
-* add help
+* gresistor
+ * url is dead
+ * /usr/share/icons/hicolor/48x48/apps/gresistor.png is dangling: error is spec
+
+* rpm set var
+* PyElectronic ?
+* /usr/lib/python2.7/site-packages/pyelectronic-0.1.0-py2.7.egg-info -> PyElectronic
+* change URL
+
 * add about
-* add logo
 * clean log
-* document code
+* fix table sorting and column width (delegate)
 
 ==========
  Features

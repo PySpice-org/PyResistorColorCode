@@ -1,0 +1,11 @@
+[Desktop Entry]
+
+Encoding=UTF-8
+Name=resistor-decoder
+Comment=Resistor color code decoder
+Icon=resistor-decoder
+Exec=resistor-decoder
+Terminal=false
+Type=Application
+Categories=Electronics;
+Comment[fr]=Decodeur de code de couleur de résistance

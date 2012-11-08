@@ -16,8 +16,9 @@ from PyQt4 import QtGui, QtCore
 
 ####################################################################################################
 
-from PyElectronic.ResistorWidget import HypothesesTableModel, ColourMatrix, ResistorImageDelegate
 from PyElectronic.GuiTools import translate
+from PyElectronic.ResistorWidget import HypothesesTableModel, ColourMatrix, ResistorImageDelegate
+import PyElectronic.ConfigInstall as ConfigInstall
 import PyElectronic.Help as Help
 
 ####################################################################################################
@@ -48,7 +49,8 @@ class Application(QtGui.QApplication):
         self._main_window.resize(1024, 800)
         self._main_window.setWindowTitle(self._application_name)
         # translate("colour_decoder", ' - Resistor Decoder')
-        self._main_window.setWindowIcon(QtGui.QIcon('share/icons/resistor.svg'))
+        svg_file = os.path.join(ConfigInstall.share_directory, 'icons/resistor.svg')
+        self._main_window.setWindowIcon(QtGui.QIcon(svg_file))
 
         self._status_bar = QtGui.QStatusBar(self._main_window)
         self._main_window.setStatusBar(self._status_bar)
