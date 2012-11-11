@@ -52,7 +52,7 @@ setup_dict = dict(
     data_files = [('share/PyElectronic/icons',['share/icons/resistor.svg']),
                   ('share/applications', ['spec/resistor-decoder.desktop']),
                   ],
-    long_description=read('README'),
+    long_description=read('README.pypi'),
     # cf. http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Topic :: Scientific/Engineering",
