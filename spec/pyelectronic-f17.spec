@@ -7,9 +7,9 @@ Summary:          Python Tools for Electronic
 
 License:          GPLv3+
 Group:            Applications/Engineering
-URL:              http://www.github.com/FabriceSalvaire/PyElectronic
+URL:              http://github.com/FabriceSalvaire/PyElectronic
 
-Source0:          http://www.github.com/%{name}/%{name}-%{version}.tar.gz
+Source0:           http://github.com/downloads/FabriceSalvaire/PyElectronic/%{name}-%{version}.tar.gz
 
 BuildArch:        noarch
 BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -61,6 +61,7 @@ update-desktop-database &> /dev/null || :
 %{_bindir}/resistor-decoder
 %{_datadir}/PyElectronic/
 %{_datadir}/applications/fedora-resistor-decoder.desktop
+# datadir/icons/hicolor/scalable/apps/resistor-decoder.svg 
 %{python_sitelib}/PyElectronic/
 %{python_sitelib}/%{name}-%{version}-py?.?.egg-info
 
@@ -68,4 +69,3 @@ update-desktop-database &> /dev/null || :
 * Mon Nov  5 2012 Fabrice Salvaire <fabrice.salvaire@orange.fr> - 0.1.0-1
 - Initial package.
 # End SPEC
-
