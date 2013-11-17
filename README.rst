@@ -7,11 +7,10 @@ PyElectronic V0.1.0
 About
 -----
 
-PyElectronic is a Python module that provide tools to work with
-resistor colour codes.  The associated program "resistor-decoder"
-provides a graphical interface to help user to decode a resistor
-colour code using an inference algorithm.  This feature is an
-enhancement over a program like gresistor.
+PyElectronic is a Python module that provide some tools to manage resistor colour codes. The
+associated program “resistor-decoder” provides a graphical user interface to help user to decode a
+resistor colour code using an inference algorithm. This feature is an enhancement compared to a
+program like gresistor which is only a colour code calculator.
 
 .. image:: https://raw.github.com/FabriceSalvaire/PyElectronic/master/doc/sphinx/source/images/resistor-decoder.png
 
@@ -49,8 +48,6 @@ then run the command::
 Packages for Linux
 ------------------
 
-An RPM is available for Fedora 17.
-
-See http://github.com/FabriceSalvaire/PyElectronic/downloads
+RPM *.spec* files are provided for Fedora (up to F18), see *spec* directory in the sources.
 
 .. End
