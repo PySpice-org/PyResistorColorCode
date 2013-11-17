@@ -29,9 +29,11 @@ import os
 # Used for the long_description.
 def read(file_name):
 
-    path = os.path.dirname(__file__)
+    path = os.path.dirname(os.path.realpath(__file__))
     if os.path.basename(path) == 'tools':
         path = os.path.dirname(path)
+    elif 'build/bdist' in path:
+        path = path[:path.find('build/bdist')]
     absolut_file_name = os.path.join(path, file_name)
 
     return open(absolut_file_name).read()
