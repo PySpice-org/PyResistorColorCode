@@ -45,9 +45,10 @@ The user and API documentation is hosted on `GitHub <http://fabricesalvaire.gith
 .. itemscope:: SoftwareApplication
     :tag: p
 
-    The source code is licensed under GPL V3 and is available on
-    :itemprop:`GitHub <downloadUrl:https://github.com/FabriceSalvaire/Pyelectronic>`.
-    And the relative project page on |ohloh| is located `here <https://www.ohloh.net/p/PyResistorColorCode>`_.
+    The source code is licensed under GPL V3 and is available on :itemprop:`GitHub
+    <downloadUrl:https://github.com/FabriceSalvaire/Pyelectronic>`. Also a Python package is
+    available on `PyPI <http://pypi.python.org/pypi/PyResistorColorCode>`_.  And the relative
+    project page on |ohloh| is located `here <https://www.ohloh.net/p/PyResistorColorCode>`_.
 
 Inference Algorithm
 -------------------

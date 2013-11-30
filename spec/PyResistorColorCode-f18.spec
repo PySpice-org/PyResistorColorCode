@@ -1,9 +1,9 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
-Name:             pyelectronic
+Name:             PyResistorColorCode
 Version:          0.1.0
 Release:          1%{?dist}
-Summary:          Python Tools for Electronic
+Summary:          Python module providing some tools to manage IEC 60062 marking codes for resistors.
 
 License:          GPLv3+
 Group:            Applications/Engineering
@@ -18,11 +18,13 @@ BuildRequires:    python-devel desktop-file-utils
 Requires:         PyQt4 >= 4.9
 
 %description
-PyResistorColorCode is a Python module that provide tools to work with
-resistor colour codes.  The associated program "resistor-decoder"
-provides a graphical interface to help user to decode a resistor
-colour code using an inference algorithm.  This feature is an
-enhancement over a program like gresistor.
+PyResistorColorCode is a Python module that provides some tools to
+manage IEC 60062 marking codes for resistors.
+
+The associated program resistor-decoder provides a graphical user
+interface to help user to decode a resistor colour-coding using an
+inference algorithm. This feature is an enhancement compared to a
+program like gresistor which is only a colour-coding calculator.
 
 %prep
 %setup -q

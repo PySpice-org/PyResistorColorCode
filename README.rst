@@ -1,6 +1,6 @@
-===================
+==========================
 PyResistorColorCode V0.1.0
-===================
+==========================
 
 :Info: The user and API documentation is hosted `here <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
 
@@ -56,7 +56,8 @@ Source Repository
    :width:  80px
 
 The source code is licensed under GPL V3 and is available on `GitHub
-<https://github.com/FabriceSalvaire/Pyelectronic>`_.  And the relative project page on |ohloh| is
+<https://github.com/FabriceSalvaire/Pyelectronic>`_.  Also a Python package is available on `PyPI
+<http://pypi.python.org/pypi/PyResistorColorCode>`_. And the relative project page on |ohloh| is
 located `here <https://www.ohloh.net/p/PyResistorColorCode>`_.
 
 Requirements
@@ -67,6 +68,10 @@ Requirements
 
 Building & Installing
 ---------------------
+
+Install from Pypy::
+
+  pip install PyResistorColorCode
 
 Download and unpack the source, then run the following commands in a terminal::
 

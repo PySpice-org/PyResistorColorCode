@@ -41,14 +41,14 @@ def read(file_name):
 ####################################################################################################
 
 setup_dict = dict(
-    name='pyelectronic',
+    name='PyResistorColorCode',
     version='0.1.0',
     author='Fabrice Salvaire',
     author_email='fabrice.salvaire@orange.fr',
-    description='Python Tools for Electronic',
+    description='Python module providing some tools to manage IEC 60062 marking codes for resistors.',
     license = "GPLv3",
-    keywords = "electronic tools",
-    url='http://fabrice-salvaire.pagesperso-orange.fr/software/index.html',
+    keywords = "resistor color colour code IEC 6006",
+    url='http://fabricesalvaire.github.io/PyResistorColorCode',
     scripts=['bin/resistor-decoder'],
     packages=['PyResistorColorCode'],
     data_files = [('share/PyResistorColorCode/icons',['share/icons/resistor.svg']),
@@ -65,7 +65,8 @@ setup_dict = dict(
         "Programming Language :: Python :: 2.7",
         ],
     install_requires=[
-        'pyqt>=4.9',
+        # pip install => Could not find any downloads that satisfy the requirement PyQt4>=4.9
+        # 'PyQt4>=4.9', 
         ],
     )
 

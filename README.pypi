@@ -1,5 +1,7 @@
-PyResistorColorCode is a Python module that provide tools to work with
-resistor colour codes.  The associated program "resistor-decoder"
-provides a graphical interface to help user to decode a resistor
-colour code using an inference algorithm.  This feature is an
-enhancement over a program like gresistor.
+PyResistorColorCode is a Python module that provides some tools to
+manage IEC 60062 marking codes for resistors.
+
+The associated program resistor-decoder provides a graphical user
+interface to help user to decode a resistor colour-coding using an
+inference algorithm. This feature is an enhancement compared to a
+program like gresistor which is only a colour-coding calculator.
