@@ -2,7 +2,7 @@
 
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 # 
 ####################################################################################################
 
-for d in bin PyElectronic ; do
+for d in bin PyResistorColorCode ; do
   for i in `find $d -name '*.py' | sort -n` ; do
     echo Check $i
     pylint --output-format=parseable --rcfile=pylintrc.ini --errors-only $i

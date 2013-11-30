@@ -7,9 +7,9 @@
 .. include:: /meta.txt
 
 .. meta::
-   :keywords: PyElectronic, IEC 60062, resistor colour-coding, resistor colour code, electronic colour code,
+   :keywords: PyResistorColorCode, IEC 60062, resistor colour-coding, resistor colour code, electronic colour code,
        resistor color-coding, resistor color code, electronic colour code
-   :description: PyElectronic is a Python module that provides some tools to manage IEC 60062
+   :description: PyResistorColorCode is a Python module that provides some tools to manage IEC 60062
        marking codes for resistors. The associated program ``resistor-decoder`` provides a graphical user
        interface to help user to decode a resistor colour-coding using an inference algorithm.
 
@@ -23,7 +23,7 @@
   
     .. IEC 60062 is also for "and capacitors"
 
-    :itemprop:`PyElectronic <name>` is a Python module that provides some tools to manage `IEC 60062
+    :itemprop:`PyResistorColorCode <name>` is a Python module that provides some tools to manage `IEC 60062
     <http://webstore.iec.ch/webstore/webstore.nsf/artnum/033377!openDocument>`_ marking codes for resistors.
 
 The associated program **resistor-decoder** provides a graphical user interface to help user to
@@ -40,14 +40,14 @@ specification of this resistor: tolerance, temperature coefficient, etc. For all
 developed an inference algorithm coupled to an graphical user interface to help user to decode
 resistor colour-coding.
 
-The user and API documentation is hosted on `GitHub <http://fabricesalvaire.github.io/PyElectronic>`_.
+The user and API documentation is hosted on `GitHub <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
   
 .. itemscope:: SoftwareApplication
     :tag: p
 
     The source code is licensed under GPL V3 and is available on
     :itemprop:`GitHub <downloadUrl:https://github.com/FabriceSalvaire/Pyelectronic>`.
-    And the relative project page on |ohloh| is located `here <https://www.ohloh.net/p/PyElectronic>`_.
+    And the relative project page on |ohloh| is located `here <https://www.ohloh.net/p/PyResistorColorCode>`_.
 
 Inference Algorithm
 -------------------
@@ -77,7 +77,7 @@ precision (series).
   :maxdepth: 2
   :numbered:
 
-  api/PyElectronic.rst
+  api/PyResistorColorCode.rst
 
 =========
  Indexes

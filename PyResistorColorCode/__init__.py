@@ -1,6 +1,6 @@
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,22 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 # 
 ####################################################################################################
-
-""" This modules provides GUI tools. """
-
-####################################################################################################
-
-from PyQt4 import QtGui
-
-####################################################################################################
-
-def translate(context, source_text):
-
-    """ Helper function to translate a source text within a context. """
-
-    return QtGui.QApplication.translate(context, source_text,
-                                        None,
-                                        QtGui.QApplication.UnicodeUTF8)
 
 ####################################################################################################
 # 

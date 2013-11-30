@@ -1,8 +1,8 @@
 *************
- :mod:`Help`
+ :mod:`Math`
 *************
 
-.. automodule:: PyElectronic.Help
+.. automodule:: PyResistorColorCode.Math
    :members:
    :show-inheritance:
 

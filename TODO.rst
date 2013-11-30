@@ -7,8 +7,8 @@
  * /usr/share/icons/hicolor/48x48/apps/gresistor.png is dangling: error is spec
 
 * rpm set var
-* PyElectronic ?
-* /usr/lib/python2.7/site-packages/pyelectronic-0.1.0-py2.7.egg-info -> PyElectronic
+* PyResistorColorCode ?
+* /usr/lib/python2.7/site-packages/pyelectronic-0.1.0-py2.7.egg-info -> PyResistorColorCode
 * change URL
 
 * add about

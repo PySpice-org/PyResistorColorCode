@@ -2,7 +2,7 @@
 
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ root_dir=`python -c "import os ; print os.path.dirname(os.path.dirname(os.path.r
 
 for i in `find ${root_dir} -name '*.py' | sort -n` ; do
   # echo Check $i
-  grep -L 'PyElectronic - Python Electronic Tools' $i;
+  grep -L 'PyResistorColorCode - Python Electronic Tools' $i;
 done
 
 ####################################################################################################

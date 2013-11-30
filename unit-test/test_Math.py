@@ -1,6 +1,6 @@
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ import unittest
 
 ####################################################################################################
 
-from PyElectronic.Math import *
+from PyResistorColorCode.Math import *
 
 ####################################################################################################
 

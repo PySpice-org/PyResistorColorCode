@@ -7,9 +7,9 @@ Summary:          Python Tools for Electronic
 
 License:          GPLv3+
 Group:            Applications/Engineering
-URL:              http://github.com/FabriceSalvaire/PyElectronic
+URL:              http://github.com/FabriceSalvaire/PyResistorColorCode
 
-Source0:           http://github.com/downloads/FabriceSalvaire/PyElectronic/%{name}-%{version}.tar.gz
+Source0:           http://github.com/downloads/FabriceSalvaire/PyResistorColorCode/%{name}-%{version}.tar.gz
 
 BuildArch:        noarch
 BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -18,7 +18,7 @@ BuildRequires:    python-devel desktop-file-utils
 Requires:         PyQt4 >= 4.9
 
 %description
-PyElectronic is a Python module that provide tools to work with
+PyResistorColorCode is a Python module that provide tools to work with
 resistor colour codes.  The associated program "resistor-decoder"
 provides a graphical interface to help user to decode a resistor
 colour code using an inference algorithm.  This feature is an
@@ -46,7 +46,7 @@ mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
 rm -rf %{buildroot}
 
 %post
-ln -sf %{_datadir}/PyElectronic/icons/resistor.svg %{_datadir}/icons/hicolor/scalable/apps/resistor-decoder.svg 
+ln -sf %{_datadir}/PyResistorColorCode/icons/resistor.svg %{_datadir}/icons/hicolor/scalable/apps/resistor-decoder.svg 
 # The shell pattern "command || :" return always success
 touch --no-create %{_datadir}/icons/hicolor || :
 update-desktop-database &> /dev/null || :
@@ -59,10 +59,10 @@ update-desktop-database &> /dev/null || :
 %files
 %defattr(-,root,root,-)
 %{_bindir}/resistor-decoder
-%{_datadir}/PyElectronic/
+%{_datadir}/PyResistorColorCode/
 %{_datadir}/applications/fedora-resistor-decoder.desktop
 # datadir/icons/hicolor/scalable/apps/resistor-decoder.svg 
-%{python_sitelib}/PyElectronic/
+%{python_sitelib}/PyResistorColorCode/
 %{python_sitelib}/%{name}-%{version}-py?.?.egg-info
 
 %changelog

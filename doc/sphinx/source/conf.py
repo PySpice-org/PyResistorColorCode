@@ -2,7 +2,7 @@
 
 ####################################################################################################
 #
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 
 ####################################################################################################
 #
-# PyElectronic documentation build configuration file, created by
+# PyResistorColorCode documentation build configuration file, created by
 # sphinx-quickstart on Fri Apr  8 16:54:03 2011.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -82,7 +82,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'PyElectronic'
+project = u'PyResistorColorCode'
 copyright = u'2012, Fabrice Salvaire'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -152,7 +152,7 @@ autodoc_default_flags = [
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 # html_theme = 'default'
-html_theme = 'PyElectronic'
+html_theme = 'PyResistorColorCode'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -225,7 +225,7 @@ html_static_path = ['_static']
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'PyElectronic'
+htmlhelp_basename = 'PyResistorColorCode'
 
 ####################################################################################################
 #
@@ -241,7 +241,7 @@ latex_font_size = '10pt'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'PyElectronic.tex', u'PyElectronic Documentation', u'Fabrice Salvaire', 'manual'),
+  ('index', 'PyResistorColorCode.tex', u'PyResistorColorCode Documentation', u'Fabrice Salvaire', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -275,7 +275,7 @@ latex_logo = None
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'PyElectronic', u'PyElectronic Documentation', [u'Fabrice Salvaire'], 1)
+    ('index', 'PyResistorColorCode', u'PyResistorColorCode Documentation', [u'Fabrice Salvaire'], 1)
 ]
 
 # Example configuration for intersphinx: refer to the Python standard library.

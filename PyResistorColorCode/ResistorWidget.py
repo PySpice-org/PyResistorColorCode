@@ -1,6 +1,6 @@
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -27,10 +27,10 @@ from PyQt4.QtCore import pyqtSignal, pyqtSlot, Qt
 
 ####################################################################################################
 
-from PyElectronic.GuiTools import translate
-from PyElectronic.ResistorColourCode import (
+from PyResistorColorCode.GuiTools import translate
+from PyResistorColorCode.ResistorColourCode import (
     COLOUR_NAMES, Resistor, ResistorDecoder, format_value)
-import PyElectronic.Config as Config
+import PyResistorColorCode.Config as Config
 
 ####################################################################################################
 

@@ -2,7 +2,7 @@
  :mod:`Config`
 ***************
 
-.. automodule:: PyElectronic.Config
+.. automodule:: PyResistorColorCode.Config
    :members:
    :show-inheritance:
 

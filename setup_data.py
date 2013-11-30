@@ -1,6 +1,6 @@
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -50,8 +50,8 @@ setup_dict = dict(
     keywords = "electronic tools",
     url='http://fabrice-salvaire.pagesperso-orange.fr/software/index.html',
     scripts=['bin/resistor-decoder'],
-    packages=['PyElectronic'],
-    data_files = [('share/PyElectronic/icons',['share/icons/resistor.svg']),
+    packages=['PyResistorColorCode'],
+    data_files = [('share/PyResistorColorCode/icons',['share/icons/resistor.svg']),
                   ('share/applications', ['spec/resistor-decoder.desktop']),
                   ],
     long_description=read('README.pypi'),

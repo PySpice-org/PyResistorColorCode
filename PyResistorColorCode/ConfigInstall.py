@@ -1,6 +1,6 @@
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 
 # Fixme: should be overwritten by setup.py
 #share_directory = 'share'
-share_directory = '/usr/share/PyElectronic'
+share_directory = '/usr/share/PyResistorColorCode'
 
 ####################################################################################################
 # 

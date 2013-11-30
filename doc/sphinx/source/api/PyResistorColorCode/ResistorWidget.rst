@@ -2,7 +2,7 @@
  :mod:`ResistorWidget`
 ***********************
 
-.. automodule:: PyElectronic.ResistorWidget
+.. automodule:: PyResistorColorCode.ResistorWidget
    :members:
    :show-inheritance:
 

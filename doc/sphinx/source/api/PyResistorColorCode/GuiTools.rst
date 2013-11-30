@@ -2,7 +2,7 @@
  :mod:`GuiTools`
 *****************
 
-.. automodule:: PyElectronic.GuiTools
+.. automodule:: PyResistorColorCode.GuiTools
    :members:
    :show-inheritance:
 

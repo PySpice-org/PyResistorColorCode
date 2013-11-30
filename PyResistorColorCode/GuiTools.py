@@ -1,6 +1,6 @@
 ####################################################################################################
 # 
-# PyElectronic - Python Electronic Tools.
+# PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
 # This program is free software: you can redistribute it and/or modify
@@ -18,34 +18,21 @@
 # 
 ####################################################################################################
 
-""" This module contains the help. """
+""" This modules provides GUI tools. """
 
 ####################################################################################################
 
-version = 'V1.0.0'
+from PyQt4 import QtGui
 
 ####################################################################################################
 
-about_message = u"""
-<h2>About PyElectronic</h2>
-<p>PyElectronic version is %(version)s</p>
-<p>Copyright &copy; 2012 Fabrice Salvaire</p>
-"""
+def translate(context, source_text):
 
-####################################################################################################
+    """ Helper function to translate a source text within a context. """
 
-colour_matrix_help = """
-<h3>Inference Algorithm</h3>
-<ul>
-<li>Code orientation (LR or RL) doesn't matter,</li>
-<li>Bands set to none are skipped,</li>
-<li>At least 3 colours must be provided (2 digits and the multiplier),</li>
-<li>Colours are interpreted by priority as resistance value, then tolerance and finally temperature
-coefficient,</li>
-<li>The resistance value must exists in a series and its tolerance must be defined if there is a
-colour assigned to it.</li>
-</ul>
-"""
+    return QtGui.QApplication.translate(context, source_text,
+                                        None,
+                                        QtGui.QApplication.UnicodeUTF8)
 
 ####################################################################################################
 # 

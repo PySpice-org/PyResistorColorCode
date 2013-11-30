@@ -1,13 +1,13 @@
 ===================
-PyElectronic V0.1.0
+PyResistorColorCode V0.1.0
 ===================
 
-:Info: The user and API documentation is hosted `here <http://fabricesalvaire.github.io/PyElectronic>`_.
+:Info: The user and API documentation is hosted `here <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
 
 About
 -----
 
-PyElectronic is a Python module that provides some tools to manage `IEC 60062
+PyResistorColorCode is a Python module that provides some tools to manage `IEC 60062
 <http://webstore.iec.ch/webstore/webstore.nsf/artnum/033377!openDocument>`_ marking codes for
 resistors.
 
@@ -24,7 +24,7 @@ Ohmmeter to measure the resistance value. But it doesn't respond to the question
 specification of this resistor: tolerance, temperature coefficient, etc. For all theses reasons, I
 developed an inference algorithm coupled to an graphical user interface to help user to decode
 
-.. image:: https://raw.github.com/FabriceSalvaire/PyElectronic/master/doc/sphinx/source/images/resistor-decoder.png
+.. image:: https://raw.github.com/FabriceSalvaire/PyResistorColorCode/master/doc/sphinx/source/images/resistor-decoder.png
 
 Inference Algorithm
 -------------------
@@ -57,7 +57,7 @@ Source Repository
 
 The source code is licensed under GPL V3 and is available on `GitHub
 <https://github.com/FabriceSalvaire/Pyelectronic>`_.  And the relative project page on |ohloh| is
-located `here <https://www.ohloh.net/p/PyElectronic>`_.
+located `here <https://www.ohloh.net/p/PyResistorColorCode>`_.
 
 Requirements
 ------------

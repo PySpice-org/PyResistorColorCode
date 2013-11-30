@@ -2,7 +2,7 @@
  :mod:`ResistorDecoderApplication`
 ***********************************
 
-.. automodule:: PyElectronic.ResistorDecoderApplication
+.. automodule:: PyResistorColorCode.ResistorDecoderApplication
    :members:
    :show-inheritance:
 
