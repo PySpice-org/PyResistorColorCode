@@ -16,7 +16,7 @@ Source Repository
 -----------------
 
 The source code is licensed under GPL V3 and is hosted on `GitHub
-<https://github.com/FabriceSalvaire/Pyelectronic>`_.  Also a Python package is available on `PyPI
+<https://github.com/FabriceSalvaire/PyResistorColorCode>`_.  Also a Python package is available on `PyPI
 <http://pypi.python.org/pypi/PyResistorColorCode>`_. And the relative project page on |ohloh| is
 located on the `ohloh project page <https://www.ohloh.net/p/PyResistorColorCode>`_.
 
