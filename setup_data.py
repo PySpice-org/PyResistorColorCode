@@ -24,6 +24,23 @@ import os
 
 ####################################################################################################
 
+def merge_include(lines, doc_path):
+    for line_index, line in enumerate(lines):
+        if line.startswith('.. include::'):
+            include_file_name = line.split('::')[-1].strip()
+            with open(os.path.join(doc_path, include_file_name)) as f:
+                include_lines = f.readlines()
+            lines[line_index] = remove_include(include_lines)
+    return ''.join(lines)
+
+def remove_include(lines):
+    for line_index, line in enumerate(lines):
+        if line.startswith('.. include::'):
+            lines[line_index] = ''
+    return ''.join(lines)
+
+####################################################################################################
+
 # Utility function to read the README file.
 # Used for the long_description.
 def read(file_name):
@@ -37,13 +54,11 @@ def read(file_name):
     doc_path = os.path.join(source_path, 'doc', 'sphinx', 'source')
 
     # Read and merge includes
-    lines = open(absolut_file_name).readlines()
-    for line_index, line in enumerate(lines):
-        if line.startswith('.. include::'):
-            include_file_name = line.split('::')[-1].strip()
-            lines[line_index] = open(os.path.join(doc_path, include_file_name)).read()
+    with open(absolut_file_name) as f:
+        lines = f.readlines()
+    text = merge_include(lines, doc_path)
 
-    return ''.join(lines)
+    return text
                                 
 ####################################################################################################
 
@@ -70,10 +85,6 @@ setup_dict = dict(
         "License :: OSI Approved :: GNU General Public License (GPL)",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 2.7",
-        ],
-    install_requires=[
-        # pip install => Could not find any downloads that satisfy the requirement PyQt4>=4.9
-        # 'PyQt4>=4.9', 
         ],
     )
 

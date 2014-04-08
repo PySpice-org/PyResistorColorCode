@@ -1,10 +1,18 @@
 .. -*- Mode: rst -*-
 
+.. |ohloh| image:: https://www.ohloh.net/accounts/230426/widgets/account_tiny.gif
+   :target: https://www.ohloh.net/accounts/fabricesalvaire
+   :alt: Fabrice Salvaire's Ohloh profile
+   :height: 15px
+   :width:  80px
+
 ==========================
 PyResistorColorCode V0.1.0
 ==========================
 
-:Info: The user and API documentation is hosted `here <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
+The user and API documentation is hosted on the project `homepage <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
+
+Written by `Fabrice Salvaire <http://fabrice-salvaire.pagesperso-orange.fr>`_.
 
 ==========
  Overview
@@ -62,15 +70,18 @@ precision (series).
 
 .. End
 
-.. include:: common.txt
 
 ==============
  Installation
 ==============
 
-You can install from `Pypy <https://pypi.python.org>`_::
+You can install from `Pypy <https://pypi.python.org/pypi/PyResistorColorCode>`_::
 
   pip install PyResistorColorCode
+
+but pip is unable to install `PyQt <http://www.riverbankcomputing.co.uk/software/pyqt/intro>`_. If
+you are on Linux then install the corresponding package else download the installer from `PyQt
+download page <http://www.riverbankcomputing.co.uk/software/pyqt/download>`_.
 
 Source Repository
 -----------------
@@ -78,13 +89,13 @@ Source Repository
 The source code is licensed under GPL V3 and is hosted on `GitHub
 <https://github.com/FabriceSalvaire/Pyelectronic>`_.  Also a Python package is available on `PyPI
 <http://pypi.python.org/pypi/PyResistorColorCode>`_. And the relative project page on |ohloh| is
-located `here <https://www.ohloh.net/p/PyResistorColorCode>`_.
+located on the `ohloh project page <https://www.ohloh.net/p/PyResistorColorCode>`_.
 
 Requirements
 ------------
 
 * Python 2.7
-* PyQt 4.9
+* PyQt 4.8
 
 Manual Installation
 -------------------
