@@ -1,0 +1,20 @@
+.. -*- Mode: rst -*-
+
+The inference algorithm works as follow:
+
+* code orientation (left-right or right-left) doesn't matter,
+* unset bands are not take into account,
+* at least 3 colours must be provided: 2 digits and the multiplier,
+* colour band are interpreted by priority as:
+
+ #. resistance value,
+ #. resistance tolerance,
+ #. temperature coefficient,
+
+* the resistance value must exists in a IEC 60063 series: E6, E12, E48, E96, E192,
+* the resistance tolerance must be defined if there is a colour band assigned to it. 
+
+When there is more than one hypothesis for the given input, the hypotheses are sorted by ascending
+precision (series).
+
+.. End

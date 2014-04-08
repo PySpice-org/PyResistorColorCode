@@ -1,0 +1,23 @@
+.. -*- Mode: rst -*-
+
+.. itemscope:: SoftwareApplication
+    :tag: p
+  
+    .. IEC 60062 is also for "and capacitors"
+
+    :itemprop:`PyResistorColorCode <name>` is a Python module that provides some tools to manage `IEC 60062
+    <http://webstore.iec.ch/webstore/webstore.nsf/artnum/033377!openDocument>`_ marking codes for resistors.
+
+.. include:: about.rst
+
+The user and API documentation is hosted on `GitHub <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
+  
+.. itemscope:: SoftwareApplication
+    :tag: p
+
+    The source code is licensed under GPL V3 and is available on :itemprop:`GitHub
+    <downloadUrl:https://github.com/FabriceSalvaire/Pyelectronic>`. Also a Python package is
+    available on `PyPI <http://pypi.python.org/pypi/PyResistorColorCode>`_.  And the relative
+    project page on |ohloh| is located `here <https://www.ohloh.net/p/PyResistorColorCode>`_.
+
+.. End

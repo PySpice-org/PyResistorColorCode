@@ -24,20 +24,27 @@ import os
 
 ####################################################################################################
 
-
 # Utility function to read the README file.
 # Used for the long_description.
 def read(file_name):
 
-    path = os.path.dirname(os.path.realpath(__file__))
-    if os.path.basename(path) == 'tools':
-        path = os.path.dirname(path)
-    elif 'build/bdist' in path:
-        path = path[:path.find('build/bdist')]
-    absolut_file_name = os.path.join(path, file_name)
+    source_path = os.path.dirname(os.path.realpath(__file__))
+    if os.path.basename(source_path) == 'tools':
+        source_path = os.path.dirname(source_path)
+    elif 'build/bdist' in source_path:
+        source_path = source_path[:source_path.find('build/bdist')]
+    absolut_file_name = os.path.join(source_path, file_name)
+    doc_path = os.path.join(source_path, 'doc', 'sphinx', 'source')
 
-    return open(absolut_file_name).read()
+    # Read and merge includes
+    lines = open(absolut_file_name).readlines()
+    for line_index, line in enumerate(lines):
+        if line.startswith('.. include::'):
+            include_file_name = line.split('::')[-1].strip()
+            lines[line_index] = open(os.path.join(doc_path, include_file_name)).read()
 
+    return ''.join(lines)
+                                
 ####################################################################################################
 
 setup_dict = dict(
@@ -54,7 +61,7 @@ setup_dict = dict(
     data_files = [('share/PyResistorColorCode/icons',['share/icons/resistor.svg']),
                   ('share/applications', ['spec/resistor-decoder.desktop']),
                   ],
-    long_description=read('README.pypi'),
+    long_description=read('README.txt'),
     # cf. http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Topic :: Scientific/Engineering",

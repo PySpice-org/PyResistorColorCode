@@ -1,0 +1,23 @@
+.. -*- Mode: rst -*-
+
+PyResistorColorCode is a Python module that provides some tools to manage `IEC 60062
+<http://webstore.iec.ch/webstore/webstore.nsf/artnum/033377!openDocument>`_ marking codes for
+resistors.
+
+.. IEC 60062 is also for "and capacitors"
+
+The associated program **resistor-decoder** provides a graphical user interface to help user to
+decode a resistor colour-coding using an inference algorithm. This feature is an enhancement
+compared to a program like **gresistor** which is only a colour-coding calculator.
+
+I started to develop this software a day where I had to sort a lot of unsorted resistors in a
+jumble. Resistors colour-coding using no more than 3 bands (2 digits and a multiplier) are no too
+difficult to decode when a person is experienced. But for more accurate resistors, it is more
+tricky. Another difficulty arises when it is difficult to recognise the colour of a band, due to an
+inappropriate colour contrast or tone. For strange colour-coding we can in last resort use an
+Ohmmeter to measure the resistance value. But it doesn't respond to the question what is the
+specification of this resistor: tolerance, temperature coefficient, etc. For all theses reasons, I
+developed an inference algorithm coupled to an graphical user interface to help user to decode
+resistor colour-coding.
+
+.. End

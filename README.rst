@@ -1,15 +1,22 @@
+.. -*- Mode: rst -*-
+
 ==========================
 PyResistorColorCode V0.1.0
 ==========================
 
 :Info: The user and API documentation is hosted `here <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
 
-About
------
+==========
+ Overview
+==========
+
+.. -*- Mode: rst -*-
 
 PyResistorColorCode is a Python module that provides some tools to manage `IEC 60062
 <http://webstore.iec.ch/webstore/webstore.nsf/artnum/033377!openDocument>`_ marking codes for
 resistors.
+
+.. IEC 60062 is also for "and capacitors"
 
 The associated program **resistor-decoder** provides a graphical user interface to help user to
 decode a resistor colour-coding using an inference algorithm. This feature is an enhancement
@@ -23,11 +30,18 @@ inappropriate colour contrast or tone. For strange colour-coding we can in last 
 Ohmmeter to measure the resistance value. But it doesn't respond to the question what is the
 specification of this resistor: tolerance, temperature coefficient, etc. For all theses reasons, I
 developed an inference algorithm coupled to an graphical user interface to help user to decode
+resistor colour-coding.
+
+.. End
+
+.. The user and API documentation is hosted `here <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
 
 .. image:: https://raw.github.com/FabriceSalvaire/PyResistorColorCode/master/doc/sphinx/source/images/resistor-decoder.png
 
 Inference Algorithm
 -------------------
+
+.. -*- Mode: rst -*-
 
 The inference algorithm works as follow:
 
@@ -46,16 +60,22 @@ The inference algorithm works as follow:
 When there is more than one hypothesis for the given input, the hypotheses are sorted by ascending
 precision (series).
 
+.. End
+
+.. include:: common.txt
+
+==============
+ Installation
+==============
+
+You can install from `Pypy <https://pypi.python.org>`_::
+
+  pip install PyResistorColorCode
+
 Source Repository
 -----------------
 
-.. |ohloh| image:: https://www.ohloh.net/accounts/230426/widgets/account_tiny.gif
-   :target: https://www.ohloh.net/accounts/fabricesalvaire
-   :alt: Fabrice Salvaire's Ohloh profile
-   :height: 15px
-   :width:  80px
-
-The source code is licensed under GPL V3 and is available on `GitHub
+The source code is licensed under GPL V3 and is hosted on `GitHub
 <https://github.com/FabriceSalvaire/Pyelectronic>`_.  Also a Python package is available on `PyPI
 <http://pypi.python.org/pypi/PyResistorColorCode>`_. And the relative project page on |ohloh| is
 located `here <https://www.ohloh.net/p/PyResistorColorCode>`_.
@@ -66,14 +86,11 @@ Requirements
 * Python 2.7
 * PyQt 4.9
 
-Building & Installing
----------------------
+Manual Installation
+-------------------
 
-Install from Pypy::
-
-  pip install PyResistorColorCode
-
-Download and unpack the source, then run the following commands in a terminal::
+Alternatively you can download the source from Github or Pypi and run the following commands in a
+terminal within the source directory::
 
   python setup.py build
   python setup.py install
@@ -89,9 +106,11 @@ then run the command::
 
   bin/resistor-decoder
 
-Packages for Linux
-------------------
+Package for Linux
+-----------------
 
 RPM *.spec* files are provided for Fedora (up to F18), see *spec* directory in the sources.
+
+.. End
 
 .. End
