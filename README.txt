@@ -34,7 +34,7 @@ The documentation is available on the |PyResistorColorCodeHomePage|_.
 How to install it ?
 -------------------
 
-Look at the `installation <@project_url@/installation.html>`_ section in the documentation.
+Look at the `installation <https://fabricesalvaire.github.io/PyResistorColorCode/installation.html>`_ section in the documentation.
 
 Credits
 =======
