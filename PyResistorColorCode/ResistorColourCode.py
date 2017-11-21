@@ -20,28 +20,30 @@
 
 # Fixme: resistor / resistance
 
-""" This modules provides tools to work with resistor colour code and the EIA (Electronics
+"""This modules provides tools to work with resistor colour code and the EIA (Electronics
 Industries Association) resistor series values.
 
 The standardised E6, E12, E24, E48, E96 and E192 resistor series values are made available through
 an instance of the class :class:`ValuesSeries` named :attr:`E6` and so on.
+
 """
 
 ####################################################################################################
 
 class ValuesSeries(object):
 
-    """ This class defines the properties of resistor value series like the standardised E6, E12,
-    E24, E48, E96 and E192 resistor series values.
+    """This class defines the properties of resistor value series like the standardised E6, E12, E24,
+    E48, E96 and E192 resistor series values.
+
     """
 
     ##############################################
 
     def __init__(self, name, number_of_digits, tolerances, values):
 
-        """ The parameter *name* gives the name of the series, the parameter *number_of_digits*
-        defines the number of digits of the values, the parameter *tolerances* gives
-        the list of tolerances and *values* gives the series of values.
+        """The parameter *name* gives the name of the series, the parameter *number_of_digits* defines the
+        number of digits of the values, the parameter *tolerances* gives the list of tolerances and
+        *values* gives the series of values.
 
         Public attributes:
 
@@ -67,6 +69,7 @@ class ValuesSeries(object):
 
         We can compare two series using the order relation on their number of values, for
         example E6 < E12 is True.
+
         """
 
         self.name = name
@@ -251,8 +254,9 @@ TEMPERATURE_COEFFICIENTS = {
 
 def format_value(x):
 
-    """ Return a string representation of a number *x* using the multiplier m, k, M and G, for
-    example the number 1230 will be formated as 1.23 k.
+    """Return a string representation of a number *x* using the multiplier m, k, M and G, for example
+    the number 1230 will be formated as 1.23 k.
+
     """
 
     if x < 1:
@@ -270,7 +274,7 @@ def format_value(x):
 
 class ColourCode(object):
 
-    """ This class defines the meaning of a colour for the digit, the multiplier, the tolerance and
+    """This class defines the meaning of a colour for the digit, the multiplier, the tolerance and
     the temperature coefficient.
 
     The protocol *repr* is implemented.
@@ -355,7 +359,7 @@ for i, colour_name in enumerate(COLOUR_NAMES):
 
 class Resistor(object):
 
-    """ This class represents a resitor.
+    """This class represents a resitor.
 
     Public attributes:
 
@@ -426,7 +430,7 @@ class Resistor(object):
 
     def _init_tolerance(self, tolerance):
 
-        """ Set the tolerance from a colour or a real number. """
+        """Set the tolerance from a colour or a real number."""
 
         if tolerance is None:
             self.tolerance = None
@@ -442,7 +446,7 @@ class Resistor(object):
 
     def _init_temperature_coefficient(self, temperature_coefficient):
 
-        """ Set the temperature coefficient from a colour or a real number. """
+        """Set the temperature coefficient from a colour or a real number."""
 
         if temperature_coefficient is None:
             self.temperature_coefficient = None
@@ -458,7 +462,7 @@ class Resistor(object):
 
     def _compute_value_from_colours(self):
 
-        """ compute the resistance value from the colour code. """
+        """compute the resistance value from the colour code."""
 
         try:
             self.digit1 = COLOUR_CODES[self.digit1_colour].digit
@@ -480,7 +484,7 @@ class Resistor(object):
     @staticmethod
     def cmp_values():
 
-        """ Compare two resistance values. """
+        """Compare two resistance values."""
 
         return lambda a, b: cmp(a.value, b.value)
 
@@ -489,7 +493,7 @@ class Resistor(object):
     @staticmethod
     def cmp_series():
 
-        """ Compare two series. """
+        """Compare two series."""
 
         return lambda a, b: cmp(a.series, b.series)
 
@@ -497,10 +501,11 @@ class Resistor(object):
 
     def _guess_series(self):
 
-        """ Guess the series of the resistor.
+        """Guess the series of the resistor.
 
 
         Return the lowest series that match the resistor properties else :obj:`None`.
+
         """
 
         if self.number_of_digits is not None:
@@ -529,7 +534,7 @@ class Resistor(object):
 
     def value_range(self):
 
-        """ Return the resistance range according to the resistance tolerance. """
+        """Return the resistance range according to the resistance tolerance."""
 
         if self.tolerance is not None:
             return tuple([self.value * (1 + sign * self.tolerance / 100. )
@@ -568,7 +573,7 @@ class Resistor(object):
 
     def digit_colour_iterator(self):
 
-        """ Return a iterator over the colours of the resistance value. """
+        """Return a iterator over the colours of the resistance value."""
 
         return iter([digit for digit in (self.digit1_colour,
                                          self.digit2_colour,
@@ -580,7 +585,7 @@ class Resistor(object):
 
 class ResistorDecoder(object):
 
-    """ This class implements a resistor decoder using an inference algorithm:
+    """This class implements a resistor decoder using an inference algorithm:
 
     * The given list of colours doesn't require to be oriented (code polarity), both orientation
       Right-Left and Left-Right are tested (bidirectional inference),
@@ -592,13 +597,14 @@ class ResistorDecoder(object):
 
     * The resistance value must exists in a series and its tolerance must be defined if there is a
       colour assigned to it.
+
     """
 
     ##############################################
 
     def _append_hypothesis(self, resistor_configuration, hypotheses):
 
-        """ Append an hypothesis if it is acceptable. """
+        """Append an hypothesis if it is acceptable."""
 
         # print 'Try:', keys
         try:
@@ -619,7 +625,7 @@ class ResistorDecoder(object):
 
     def _decode(self, colour_names, hypotheses):
 
-        """ Decode a resistor in one direction from the given list of colour *colour_names*. """
+        """Decode a resistor in one direction from the given list of colour *colour_names*."""
 
         two_digits_bands = ['digit1', 'digit2', 'multiplier']
         three_digits_bands = ['digit1', 'digit2', 'digit3', 'multiplier']
@@ -644,7 +650,7 @@ class ResistorDecoder(object):
 
     def decode(self, colour_names):
 
-        """ Decode a resistor from the given list of colour *colour_names*. """
+        """Decode a resistor from the given list of colour *colour_names*."""
 
         number_of_colours = len(colour_names)
         if number_of_colours < 3:

@@ -18,7 +18,7 @@
 #
 ####################################################################################################
 
-""" This module implements a Resistor Decoder Application. """
+"""This module implements a Resistor Decoder Application."""
 
 ####################################################################################################
 
@@ -38,7 +38,7 @@ import PyResistorColorCode.Help as Help
 
 class Application(QtGui.QApplication):
 
-    """ This class implements the application. """
+    """This class implements the application."""
 
     ###############################################
 
@@ -76,7 +76,7 @@ class Application(QtGui.QApplication):
 
     def _init_widget(self):
 
-        """ Initialise widgets. """
+        """Initialise widgets."""
 
         central_widget = QtGui.QWidget(self._main_window)
         self._vertical_layout = QtGui.QVBoxLayout(central_widget)
@@ -93,7 +93,7 @@ class Application(QtGui.QApplication):
 
     def _init_action(self):
 
-        """ Initialise the actions. """
+        """Initialise the actions."""
 
         self._about_action = QtGui.QAction(self._main_window)
         self._about_action.setText(translate('colour_decoder', 'About'))
@@ -103,7 +103,7 @@ class Application(QtGui.QApplication):
 
     def _init_menu(self):
 
-        """ Initialise the menu bar. """
+        """Initialise the menu bar."""
 
         self._menu_bar = QtGui.QMenuBar(self._main_window)
         self._main_window.setMenuBar(self._menu_bar)
@@ -117,7 +117,7 @@ class Application(QtGui.QApplication):
 
     def _init_colour_matrix_widget(self):
 
-        """ Initialise the colour matrix widget. """
+        """Initialise the colour matrix widget."""
 
         self._colour_code_group_box = QtGui.QGroupBox(self._main_window)
         self._colour_code_group_box.setTitle(translate("colour_decoder", 'Colour Code'))
@@ -144,7 +144,7 @@ class Application(QtGui.QApplication):
 
     def _init_hypotheses_widget(self):
 
-        """ Initialise the hypothesis table widget. """
+        """Initialise the hypothesis table widget."""
 
         self._hypotheses_group_box = QtGui.QGroupBox(self._main_window)
         self._hypotheses_group_box.setTitle(translate("colour_decoder", 'Hypotheses'))

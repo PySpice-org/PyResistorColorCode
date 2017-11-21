@@ -18,7 +18,7 @@
 #
 ####################################################################################################
 
-""" This modules provides GUI widgets for resistors. """
+"""This modules provides GUI widgets for resistors."""
 
 ####################################################################################################
 
@@ -40,7 +40,7 @@ _CENTERED_ALIGNEMENT = Qt.AlignHCenter | Qt.AlignVCenter
 
 class ResistorPixmap(object):
 
-    """ This class implements a resistor painter. """
+    """This class implements a resistor painter."""
 
     ###############################################
 
@@ -52,7 +52,7 @@ class ResistorPixmap(object):
 
     def paint(self, painter, rect):
 
-        """ Paint the resistor. """
+        """Paint the resistor."""
 
         lead_size = 20
         body_line_width = 1.5
@@ -95,7 +95,7 @@ class ResistorPixmap(object):
 
 class ResistorImageDelegate(QtGui.QStyledItemDelegate):
 
-    """ This class implements an item delegate that paint a resistor. """
+    """This class implements an item delegate that paint a resistor."""
 
     ###############################################
 
@@ -110,7 +110,7 @@ class ResistorImageDelegate(QtGui.QStyledItemDelegate):
 
     def sizeHint(self, option, index):
 
-        """ Return the size hint. """
+        """Return the size hint."""
 
         print 'sizeHint'
 
@@ -123,7 +123,7 @@ class ResistorImageDelegate(QtGui.QStyledItemDelegate):
 
     def paint(self, painter, option, index):
 
-        """ Paint the resistor. """
+        """Paint the resistor."""
 
         resistor_pixmap = index.data().toPyObject()
         if isinstance(resistor_pixmap, ResistorPixmap):
@@ -138,9 +138,10 @@ class ResistorImageDelegate(QtGui.QStyledItemDelegate):
 
 class ColourMatrix(QtCore.QObject):
 
-    """ This class implements a colour matrix where the columns represents the resistor colour bands
-    and the rows all the possible colours and the undefined state.  Each band column is made of a
-    group of exclusive checkable buttons.
+    """This class implements a colour matrix where the columns represents the resistor colour bands and
+    the rows all the possible colours and the undefined state.  Each band column is made of a group
+    of exclusive checkable buttons.
+
     """
 
     _NUMBER_OF_BANDS = 6
@@ -167,7 +168,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _band_iterator(self):
 
-        """ Return an iterator over the band indexes. """
+        """Return an iterator over the band indexes."""
 
         return xrange(self._NUMBER_OF_BANDS)
 
@@ -175,7 +176,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _init_pixmaps(self):
 
-        """ Initialise the colour pixmaps that represents the resistor colour bands. """
+        """Initialise the colour pixmaps that represents the resistor colour bands."""
 
         self._band_pixmaps = {}
         for colour in self._colour_names:
@@ -187,7 +188,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _init_cell(self, parent, band, row, colour):
 
-        """ Initialise a cell. """
+        """Initialise a cell."""
 
         button = QtGui.QToolButton(parent)
         button.setCheckable(True)
@@ -206,7 +207,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _init_widget(self, parent):
 
-        """ Initialise the matrix widgets. """
+        """Initialise the matrix widgets."""
 
         self._grid_layout = QtGui.QGridLayout()
         self._grid_layout.setHorizontalSpacing(10)
@@ -252,7 +253,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _reset_band_button(self, band):
 
-        """ Reset the band. """
+        """Reset the band."""
 
         colour = self._band_status[band]
         button = self._button(band, colour)
@@ -262,7 +263,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _set_band_status(self, band, colour):
 
-        """ Set the colour of a band and emit the value changed signal. """
+        """Set the colour of a band and emit the value changed signal."""
 
         self._reset_band_button(band)
         self._band_status[band] = colour
@@ -275,7 +276,7 @@ class ColourMatrix(QtCore.QObject):
 
     def reset(self):
 
-        """ Reset the matrix. """
+        """Reset the matrix."""
 
         for band in self._band_iterator():
             self._set_band_status(band, 'none')
@@ -284,7 +285,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _emit_value_changed(self):
 
-        """ Emit the value changed signal with the list of bands. """
+        """Emit the value changed signal with the list of bands."""
 
         for band, colour in enumerate(self._band_status):
             label = self._band_labels[band]
@@ -296,7 +297,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _make_button_clicked_callback(self, band):
 
-        """ Return a closure wrapper for the method :meth:`_button_clicked`. """
+        """Return a closure wrapper for the method :meth:`_button_clicked`."""
 
         # band must be a local variable
 
@@ -306,7 +307,7 @@ class ColourMatrix(QtCore.QObject):
 
     def _button_clicked(self, band, button):
 
-        """ Handle a clicked action on a button cell. """
+        """Handle a clicked action on a button cell."""
 
         button_group = self._band_button_groups[band]
         row = button_group.id(button)
@@ -317,7 +318,7 @@ class ColourMatrix(QtCore.QObject):
 
     def widget(self):
 
-        """ Return the grid layout of the matrix. """
+        """Return the grid layout of the matrix."""
 
         return self._grid_layout
 
@@ -325,7 +326,7 @@ class ColourMatrix(QtCore.QObject):
 
 class HypothesesTableModel(QtCore.QAbstractTableModel):
 
-    """ This class implements a table model for the hypotheses. """
+    """This class implements a table model for the hypotheses."""
 
     COLUMNS = ('value',
                'series',
@@ -348,7 +349,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
     @classmethod
     def column_index(cls, column):
 
-        """ Return the index of the given column name. """
+        """Return the index of the given column name."""
 
         return cls.COLUMNS.index(column)
 
@@ -367,7 +368,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
     @pyqtSlot(list)
     def update_hypotheses(self, bands):
 
-        """ Slot to update the hypotheses from the given list of bands. """
+        """Slot to update the hypotheses from the given list of bands."""
 
         colour_names = [x for x in bands if x != 'none']
         if len(colour_names) >= 3:
@@ -387,7 +388,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     def rowCount(self, index=QtCore.QModelIndex()):
 
-        """ Return the number of rows. """
+        """Return the number of rows."""
 
         return len(self._hypotheses)
 
@@ -395,7 +396,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     def columnCount(self, index=QtCore.QModelIndex()):
 
-        """ Return the number of columns. """
+        """Return the number of columns."""
 
         return len(self.COLUMNS)
 
@@ -403,7 +404,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     def headerData(self, section, orientation, role=Qt.DisplayRole):
 
-        """ Return the header data. """
+        """Return the header data."""
 
         if role == Qt.TextAlignmentRole:
             return QtCore.QVariant(int(Qt.AlignHCenter|Qt.AlignVCenter))
@@ -421,7 +422,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     def data(self, index, role=Qt.DisplayRole):
 
-        """ Return the cell data. """
+        """Return the cell data."""
 
         if not index.isValid() or not(0 <= index.row() < len(self._hypotheses)):
             return QtCore.QVariant()
@@ -477,7 +478,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     def _sort(self, cmp_function, reverse):
 
-        """ Sort the model with the given sort function and order. """
+        """Sort the model with the given sort function and order."""
 
         self._hypotheses = sorted(self._hypotheses, cmp=cmp_function, reverse=reverse)
 
@@ -485,7 +486,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     def _sort_by_values(self, reverse=False):
 
-        """ Sort the resistors by values. """
+        """Sort the resistors by values."""
 
         self._sort(Resistor.cmp_values(), reverse)
 
@@ -493,7 +494,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     def _sort_by_series(self, reverse=False):
 
-        """ Sort the resistors by series. """
+        """Sort the resistors by series."""
 
         self._sort(Resistor.cmp_series(), reverse)
 
@@ -501,7 +502,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     def sort(self, column, order=Qt.AscendingOrder):
 
-        """ Sort the model. """
+        """Sort the model."""
 
         reverse = order != Qt.AscendingOrder
         column = self.COLUMNS[column]
