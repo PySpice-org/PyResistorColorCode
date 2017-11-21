@@ -42,8 +42,8 @@ class TestResistorColourCode(unittest.TestCase):
         self.assertEqual(len(E192), 192)
 
         eia_series = (E6, E12, E24, E48, E96, E192)
-        for i in xrange(len(eia_series) -1):
-            for j in xrange(i +1, len(eia_series)):
+        for i in range(len(eia_series) -1):
+            for j in range(i +1, len(eia_series)):
                 self.assertTrue(eia_series[i] < eia_series[j])
                 self.assertFalse(eia_series[i] > eia_series[j])
 

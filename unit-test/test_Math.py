@@ -34,7 +34,7 @@ class TestMath(unittest.TestCase):
 
     def test_number_of_digits_of(self):
 
-        for i in xrange(6):
+        for i in range(6):
             for x in 0.1, 0.123456:
                 y = x*10**i
                 # print i, y
@@ -48,7 +48,7 @@ class TestMath(unittest.TestCase):
         number = 0
         for i, d in enumerate(reversed(digits)):
             number += d * 10**i
-        for i in xrange(1,5):
+        for i in range(1, 5):
             output_number = 0
             for j, d in enumerate(reversed(digits[:i])):
                 output_number += d * 10**j
