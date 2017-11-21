@@ -17,10 +17,10 @@
    :height: 15px
    :width:  80px
 
-.. |PyResistorColorCodeUrl| replace:: @project_url@
+.. |PyResistorColorCodeUrl| replace:: https://fabricesalvaire.github.io/PyResistorColorCode
 
 .. |PyResistorColorCodeHomePage| replace:: PyResistorColorCode Home Page
-.. _PyResistorColorCodeHomePage: @project_url@
+.. _PyResistorColorCodeHomePage: https://fabricesalvaire.github.io/PyResistorColorCode
 
 .. |PyResistorColorCode@readthedocs-badge| image:: https://readthedocs.org/projects/PyResistorColorCode/badge/?version=latest
    :target: http://PyResistorColorCode.readthedocs.org/en/latest
