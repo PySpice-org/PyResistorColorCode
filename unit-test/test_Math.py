@@ -1,5 +1,5 @@
 ####################################################################################################
-# 
+#
 # PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
@@ -7,15 +7,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-# 
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 ####################################################################################################
 
 ####################################################################################################
@@ -29,9 +29,9 @@ from PyResistorColorCode.Math import *
 ####################################################################################################
 
 class TestMath(unittest.TestCase):
- 
+
     ##############################################
-    
+
     def test_number_of_digits_of(self):
 
         for i in xrange(6):
@@ -41,9 +41,9 @@ class TestMath(unittest.TestCase):
                 self.assertEqual(number_of_digits_of(y), i)
 
     ##############################################
-    
+
     def test_significant_digits_of(self):
- 
+
         digits = (1, 2, 3, 4)
         number = 0
         for i, d in enumerate(reversed(digits)):
@@ -60,9 +60,3 @@ class TestMath(unittest.TestCase):
 if __name__ == '__main__':
 
     unittest.main()
-
-####################################################################################################
-# 
-# End
-# 
-####################################################################################################

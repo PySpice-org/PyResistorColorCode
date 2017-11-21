@@ -1,5 +1,5 @@
 ####################################################################################################
-# 
+#
 # PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
@@ -7,15 +7,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-# 
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 ####################################################################################################
 
 """ This module implements a Resistor Decoder Application. """
@@ -41,7 +41,7 @@ class Application(QtGui.QApplication):
     """ This class implements the application. """
 
     ###############################################
-    
+
     def __init__(self):
 
         super(Application, self).__init__(sys.argv)
@@ -52,7 +52,7 @@ class Application(QtGui.QApplication):
         self._main_window.show()
 
     ###############################################
-    
+
     def _init_main_window(self):
 
         """ Initialise the main window. """
@@ -73,7 +73,7 @@ class Application(QtGui.QApplication):
         self._init_menu()
 
     ###############################################
-    
+
     def _init_widget(self):
 
         """ Initialise widgets. """
@@ -90,17 +90,17 @@ class Application(QtGui.QApplication):
         self._vertical_layout.addItem(spacer_item)
 
     ###############################################
-    
+
     def _init_action(self):
 
-        """ Initialise the actions. """        
+        """ Initialise the actions. """
 
         self._about_action = QtGui.QAction(self._main_window)
         self._about_action.setText(translate('colour_decoder', 'About'))
         self._about_action.triggered.connect(self._about)
 
     ###############################################
-    
+
     def _init_menu(self):
 
         """ Initialise the menu bar. """
@@ -114,7 +114,7 @@ class Application(QtGui.QApplication):
         self._menu_bar.addAction(self._help_menu.menuAction())
 
     ###############################################
-    
+
     def _init_colour_matrix_widget(self):
 
         """ Initialise the colour matrix widget. """
@@ -141,7 +141,7 @@ class Application(QtGui.QApplication):
         horizontal_layout.addWidget(help_label)
 
     ###############################################
-    
+
     def _init_hypotheses_widget(self):
 
         """ Initialise the hypothesis table widget. """
@@ -172,12 +172,6 @@ class Application(QtGui.QApplication):
     ##############################################
 
     def _about(self):
-        
+
         message = Help.about_message % {'version':str(Help.version)}
         QtGui.QMessageBox.about(self._main_window, 'About ' + self._application_name, message)
-
-####################################################################################################
-#
-# End
-#
-####################################################################################################

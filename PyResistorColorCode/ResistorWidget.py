@@ -1,5 +1,5 @@
 ####################################################################################################
-# 
+#
 # PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
@@ -7,15 +7,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-# 
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 ####################################################################################################
 
 """ This modules provides GUI widgets for resistors. """
@@ -43,13 +43,13 @@ class ResistorPixmap(object):
     """ This class implements a resistor painter. """
 
     ###############################################
-    
+
     def __init__(self, resistor):
 
         self._resitor = resistor
 
     ###############################################
-    
+
     def paint(self, painter, rect):
 
         """ Paint the resistor. """
@@ -90,7 +90,7 @@ class ResistorPixmap(object):
             if colour is not None:
                 paint_band(colour)
                 x_band += small_band_gap
-           
+
 ####################################################################################################
 
 class ResistorImageDelegate(QtGui.QStyledItemDelegate):
@@ -98,11 +98,11 @@ class ResistorImageDelegate(QtGui.QStyledItemDelegate):
     """ This class implements an item delegate that paint a resistor. """
 
     ###############################################
- 
+
     def __init__(self, parent, margin, size):
 
         super(ResistorImageDelegate, self).__init__(parent)
-        
+
         self._margin = margin
         self._size = size
 
@@ -121,7 +121,7 @@ class ResistorImageDelegate(QtGui.QStyledItemDelegate):
 
     ###############################################
 
-    def paint(self, painter, option, index):        
+    def paint(self, painter, option, index):
 
         """ Paint the resistor. """
 
@@ -149,9 +149,9 @@ class ColourMatrix(QtCore.QObject):
 
     #: Value changed signal.
     value_changed = pyqtSignal(list)
-    
+
     ###############################################
-    
+
     def __init__(self, parent):
 
         super(ColourMatrix, self).__init__()
@@ -164,7 +164,7 @@ class ColourMatrix(QtCore.QObject):
         self._init_widget(parent)
 
     ###############################################
-    
+
     def _band_iterator(self):
 
         """ Return an iterator over the band indexes. """
@@ -172,7 +172,7 @@ class ColourMatrix(QtCore.QObject):
         return xrange(self._NUMBER_OF_BANDS)
 
     ###############################################
-    
+
     def _init_pixmaps(self):
 
         """ Initialise the colour pixmaps that represents the resistor colour bands. """
@@ -184,7 +184,7 @@ class ColourMatrix(QtCore.QObject):
             self._band_pixmaps[colour] = pixmap
 
     ###############################################
-    
+
     def _init_cell(self, parent, band, row, colour):
 
         """ Initialise a cell. """
@@ -203,7 +203,7 @@ class ColourMatrix(QtCore.QObject):
         self._band_button_groups[band].addButton(button, row)
 
     ###############################################
-    
+
     def _init_widget(self, parent):
 
         """ Initialise the matrix widgets. """
@@ -241,15 +241,15 @@ class ColourMatrix(QtCore.QObject):
         self.reset()
 
     ###############################################
-    
+
     def _button(self, band, colour):
-        
+
         """ Return the button for the given band and colour. """
 
         return self._band_button_groups[band].button(self._colour_to_row[colour])
 
     ###############################################
-    
+
     def _reset_band_button(self, band):
 
         """ Reset the band. """
@@ -259,7 +259,7 @@ class ColourMatrix(QtCore.QObject):
         button.setText('')
 
     ###############################################
-    
+
     def _set_band_status(self, band, colour):
 
         """ Set the colour of a band and emit the value changed signal. """
@@ -272,7 +272,7 @@ class ColourMatrix(QtCore.QObject):
         self._emit_value_changed()
 
     ###############################################
-    
+
     def reset(self):
 
         """ Reset the matrix. """
@@ -281,7 +281,7 @@ class ColourMatrix(QtCore.QObject):
             self._set_band_status(band, 'none')
 
     ###############################################
-    
+
     def _emit_value_changed(self):
 
         """ Emit the value changed signal with the list of bands. """
@@ -314,7 +314,7 @@ class ColourMatrix(QtCore.QObject):
         self._set_band_status(band, colour)
 
     ###############################################
-    
+
     def widget(self):
 
         """ Return the grid layout of the matrix. """
@@ -344,7 +344,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
                    )
 
     ###############################################
-    
+
     @classmethod
     def column_index(cls, column):
 
@@ -353,7 +353,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
         return cls.COLUMNS.index(column)
 
     ###############################################
-    
+
     def __init__(self):
 
         super(HypothesesTableModel, self).__init__()
@@ -363,7 +363,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
         self._resistor_pixmaps = {}
 
     ###############################################
-    
+
     @pyqtSlot(list)
     def update_hypotheses(self, bands):
 
@@ -392,7 +392,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
         return len(self._hypotheses)
 
     ###############################################
-    
+
     def columnCount(self, index=QtCore.QModelIndex()):
 
         """ Return the number of columns. """
@@ -407,7 +407,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
         if role == Qt.TextAlignmentRole:
             return QtCore.QVariant(int(Qt.AlignHCenter|Qt.AlignVCenter))
-        
+
         elif role == Qt.DisplayRole:
             if orientation == Qt.Horizontal:
                 return QtCore.QVariant(self.HEADER_DATA[section])
@@ -418,7 +418,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
             return QtCore.QVariant()
 
     ###############################################
-    
+
     def data(self, index, role=Qt.DisplayRole):
 
         """ Return the cell data. """
@@ -434,7 +434,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
             return QtCore.QVariant ()
 
     ###############################################
-    
+
     def _display_role_data(self, index):
 
         row = index.row()
@@ -476,7 +476,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
     ###############################################
 
     def _sort(self, cmp_function, reverse):
-        
+
         """ Sort the model with the given sort function and order. """
 
         self._hypotheses = sorted(self._hypotheses, cmp=cmp_function, reverse=reverse)
@@ -510,9 +510,3 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
         elif column == 'series':
             self._sort_by_series(reverse)
         self.reset()
-
-####################################################################################################
-# 
-# End
-# 
-####################################################################################################

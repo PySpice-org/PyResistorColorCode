@@ -1,5 +1,5 @@
 ####################################################################################################
-# 
+#
 # PyResistorColorCode - Python Electronic Tools.
 # Copyright (C) 2012 Salvaire Fabrice
 #
@@ -7,15 +7,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-# 
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 ####################################################################################################
 
 # Fixme: resistor / resistance
@@ -52,7 +52,7 @@ class ValuesSeries(object):
           :attr:`tolerances`
 
           :attr:`values`
-          
+
         The name of the series can be retrieved using::
 
           str(E6)
@@ -350,7 +350,7 @@ for i, colour_name in enumerate(COLOUR_NAMES):
                                            multiplier,
                                            TOLERANCES[colour_name],
                                            TEMPERATURE_COEFFICIENTS[colour_name])
-       
+
 ####################################################################################################
 
 class Resistor(object):
@@ -385,7 +385,7 @@ class Resistor(object):
       :attr:`series`
 
     """
-    
+
     ##############################################
 
     def __init__(self,
@@ -552,7 +552,7 @@ class Resistor(object):
             temperature_coefficient_str = ''
 
         series_name = str(self.series)
-        
+
         return ' '.join(x for x in ("%s R series %s" % (format_value(self.value), series_name),
                                     tolerance_str,
                                     temperature_coefficient_str,
@@ -575,7 +575,7 @@ class Resistor(object):
                                          self.digit3_colour,
                                          self.multiplier_colour)
                      if digit is not None])
-            
+
 ####################################################################################################
 
 class ResistorDecoder(object):
@@ -657,9 +657,3 @@ class ResistorDecoder(object):
         self._decode(list(reversed(colour_names)), hypotheses)
 
         return hypotheses
-
-####################################################################################################
-#
-# End
-#
-####################################################################################################
