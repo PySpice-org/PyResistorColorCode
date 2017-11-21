@@ -19,5 +19,3 @@ Ohmmeter to measure the resistance value. But it doesn't respond to the question
 specification of this resistor: tolerance, temperature coefficient, etc. For all theses reasons, I
 developed an inference algorithm coupled to an graphical user interface to help user to decode
 resistor colour-coding.
-
-.. End

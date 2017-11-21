@@ -1,16 +1,19 @@
 .. -*- Mode: rst -*-
 
+.. include:: project-links.txt
+.. include:: abbreviation.txt
+
 =====================
  PyResistorColorCode
 =====================
 
-The user and API documentation is hosted on the project `homepage <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
+|Pypi License|
+|Pypi Python Version|
 
-Written by Fabrice Salvaire
+|Pypi Version|
 
-==========
- Overview
-==========
+Overview
+========
 
 .. include:: about.txt
 
@@ -23,6 +26,17 @@ Inference Algorithm
 
 .. include:: inference-algorithm.txt
 
-.. include:: install.rst
+Where is the Documentation ?
+----------------------------
 
-.. End
+The documentation is available on the |PyResistorColorCodeHomePage|_.
+
+How to install it ?
+-------------------
+
+Look at the `installation <@project_url@/installation.html>`_ section in the documentation.
+
+Credits
+=======
+
+Authors: `Fabrice Salvaire <http://fabrice-salvaire.fr>`_

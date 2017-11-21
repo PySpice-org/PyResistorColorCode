@@ -1,5 +1,4 @@
 
-.. include:: /common.txt
 .. include:: /meta.txt
 
 .. meta::
@@ -34,7 +33,7 @@ Inference Algorithm
   :maxdepth: 2
   :numbered:
 
-  install
-  api
+  installation
+  reference-manual
 
 .. End

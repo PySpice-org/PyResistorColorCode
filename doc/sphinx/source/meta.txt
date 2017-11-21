@@ -8,12 +8,10 @@
     :language: en
     :content-type: utf-8
     :charset: utf-8
-    
+
     :author: Fabrice Salvaire
     :copyright: Fabrice Salvaire
-    
-    :robots: all, index, follow, archive
-    
-    :generator: sphinx
 
-.. End
+    :robots: all, index, follow, archive
+
+    :generator: sphinx

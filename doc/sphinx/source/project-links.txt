@@ -1,0 +1,52 @@
+.. -*- Mode: rst -*-
+
+..
+   |PyResistorColorCodeUrl|
+   |PyResistorColorCodeHomePage|_
+   |PyResistorColorCodeDoc|_
+   |PyResistorColorCode@github|_
+   |PyResistorColorCode@readthedocs|_
+   |PyResistorColorCode@readthedocs-badge|
+   |PyResistorColorCode@pypi|_
+
+.. |ohloh| image:: https://www.openhub.net/accounts/230426/widgets/account_tiny.gif
+   :target: https://www.openhub.net/accounts/fabricesalvaire
+   :alt: Fabrice Salvaire's Ohloh profile
+   :height: 15px
+   :width:  80px
+
+.. |PyResistorColorCodeUrl| replace:: @project_url@
+
+.. |PyResistorColorCodeHomePage| replace:: PyResistorColorCode Home Page
+.. _PyResistorColorCodeHomePage: @project_url@
+
+.. |PyResistorColorCode@readthedocs-badge| image:: https://readthedocs.org/projects/PyResistorColorCode/badge/?version=latest
+   :target: http://PyResistorColorCode.readthedocs.org/en/latest
+
+.. |PyResistorColorCode@github| replace:: https://github.com/FabriceSalvaire/PyResistorColorCode
+.. .. _PyResistorColorCode@github: https://github.com/FabriceSalvaire/PyResistorColorCode
+
+.. |PyResistorColorCode@pypi| replace:: https://pypi.python.org/pypi/PyResistorColorCode
+.. .. _PyResistorColorCode@pypi: https://pypi.python.org/pypi/PyResistorColorCode
+
+.. |Build Status| image:: https://travis-ci.org/FabriceSalvaire/PyResistorColorCode.svg?branch=master
+   :target: https://travis-ci.org/FabriceSalvaire/PyResistorColorCode
+   :alt: PyResistorColorCode build status @travis-ci.org
+
+.. |Pypi Version| image:: https://img.shields.io/pypi/v/PyResistorColorCode.svg
+   :target: https://pypi.python.org/pypi/PyResistorColorCode
+   :alt: PyResistorColorCode last version
+
+.. |Pypi License| image:: https://img.shields.io/pypi/l/PyResistorColorCode.svg
+   :target: https://pypi.python.org/pypi/PyResistorColorCode
+   :alt: PyResistorColorCode license
+
+.. |Pypi Python Version| image:: https://img.shields.io/pypi/pyversions/PyResistorColorCode.svg
+   :target: https://pypi.python.org/pypi/PyResistorColorCode
+   :alt: PyResistorColorCode python version
+
+..  coverage test
+..  https://img.shields.io/pypi/status/Django.svg
+..  https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star
+
+.. End
