@@ -1,0 +1,37 @@
+# -*- Conf -*-
+#################################################################################
+# bzr files
+.bzr
+.bzrignore
+#################################################################################
+# Byte-compiled files
+*.pyc
+__pycache__
+#################################################################################
+# Backup files
+*~
+#################################################################################
+# Auto-generated files
+MANIFEST
+TAGS
+build
+dist
+doc/build
+doc/sphinx/old-api
+#################################################################################
+# Scratch files
+bugs.txt
+prototype
+prototype/ui/colour-decoder-prototype_ui.py
+#
+.cache/
+.git-backup/
+.tox/
+PyResistorColorCode.egg-info/
+TOFIX.txt
+bzr/
+doc/sphinx/source/api/
+notes.txt
+notes/
+open-doc.sh
+template-variables.txt
