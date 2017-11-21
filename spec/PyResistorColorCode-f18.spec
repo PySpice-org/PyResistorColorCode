@@ -15,7 +15,7 @@ BuildArch:        noarch
 BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:    python-devel desktop-file-utils
 
-Requires:         PyQt4 >= 4.9
+Requires:         PyQt5 >= 4.9
 
 %description
 PyResistorColorCode is a Python module that provides some tools to

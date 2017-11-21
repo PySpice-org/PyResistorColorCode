@@ -1,14 +1,8 @@
 .. -*- Mode: rst -*-
 
-.. |ohloh| image:: https://www.ohloh.net/accounts/230426/widgets/account_tiny.gif
-   :target: https://www.ohloh.net/accounts/fabricesalvaire
-   :alt: Fabrice Salvaire's Ohloh profile
-   :height: 15px
-   :width:  80px
-
-==========================
-PyResistorColorCode V0.1.0
-==========================
+=====================
+ PyResistorColorCode
+=====================
 
 The user and API documentation is hosted on the project `homepage <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
 
@@ -70,6 +64,21 @@ precision (series).
 
 .. End
 
+.. -*- Mode: rst -*-
+
+.. Global Definitions
+
+.. |github| image:: /images/GitHub_Logo.png
+   :alt: GitHub logo
+   :height: 20
+
+.. |ohloh| image:: https://www.ohloh.net/accounts/230426/widgets/account_tiny.gif
+   :target: https://www.ohloh.net/accounts/fabricesalvaire
+   :alt: Fabrice Salvaire's Ohloh profile
+   :height: 15px
+   :width:  80px
+
+.. End
 
 ==============
  Installation
@@ -87,7 +96,7 @@ Source Repository
 -----------------
 
 The source code is licensed under GPL V3 and is hosted on `GitHub
-<https://github.com/FabriceSalvaire/Pyelectronic>`_.  Also a Python package is available on `PyPI
+<https://github.com/FabriceSalvaire/PyResistorColorCode>`_.  Also a Python package is available on `PyPI
 <http://pypi.python.org/pypi/PyResistorColorCode>`_. And the relative project page on |ohloh| is
 located on the `ohloh project page <https://www.ohloh.net/p/PyResistorColorCode>`_.
 

@@ -6,7 +6,7 @@ include GPL-V3.0.txt
 include LICENSE.txt
 include MANIFEST.in
 include README.pypi
-include README.rst
+include README.txt
 include TODO.rst
 include make-release.sh
 include pylintrc.ini
