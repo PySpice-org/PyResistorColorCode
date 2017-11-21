@@ -1,0 +1,8 @@
+****************************
+ResistorDecoderApplication
+****************************
+
+.. automodule:: PyResistorColorCode.ResistorDecoderApplication
+   :members:
+   :show-inheritance:
+

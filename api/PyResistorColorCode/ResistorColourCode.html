@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1.6. ResistorColourCode &mdash; PyResistorColorCode 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../static/css/PyResistorColorCode.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PyResistorColorCode 1.0.0 documentation" href="../../index.html"/>
+        <link rel="up" title="2.1. PyResistorColorCode" href="../PyResistorColorCode.html"/>
+        <link rel="next" title="2.1.7. ResistorDecoderApplication" href="ResistorDecoderApplication.html"/>
+        <link rel="prev" title="2.1.5. Math" href="Math.html"/> 
+
+  
+  <script src="../../static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PyResistorColorCode
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">1. Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../reference-manual.html">2. API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../PyResistorColorCode.html">2.1. PyResistorColorCode</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Config.html">2.1.1. Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConfigInstall.html">2.1.2. ConfigInstall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GuiTools.html">2.1.3. GuiTools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Help.html">2.1.4. Help</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Math.html">2.1.5. Math</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.1.6. ResistorColourCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResistorDecoderApplication.html">2.1.7. ResistorDecoderApplication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ResistorWidget.html">2.1.8. ResistorWidget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference-manual.html#indexes">2.2. Indexes</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyResistorColorCode</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../reference-manual.html">2. API Documentation</a> &raquo;</li>
+        
+          <li><a href="../PyResistorColorCode.html">2.1. PyResistorColorCode</a> &raquo;</li>
+        
+      <li>2.1.6. ResistorColourCode</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/PyResistorColorCode/ResistorColourCode.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-PyResistorColorCode.ResistorColourCode">
+<span id="resistorcolourcode"></span><h1>2.1.6. ResistorColourCode<a class="headerlink" href="#module-PyResistorColorCode.ResistorColourCode" title="Permalink to this headline">¶</a></h1>
+<p>This modules provides tools to work with resistor colour code and the EIA (Electronics
+Industries Association) resistor series values.</p>
+<p>The standardised E6, E12, E24, E48, E96 and E192 resistor series values are made available through
+an instance of the class <a class="reference internal" href="#PyResistorColorCode.ResistorColourCode.ValuesSeries" title="PyResistorColorCode.ResistorColourCode.ValuesSeries"><code class="xref py py-class docutils literal"><span class="pre">ValuesSeries</span></code></a> named <a class="reference internal" href="#PyResistorColorCode.ResistorColourCode.E6" title="PyResistorColorCode.ResistorColourCode.E6"><code class="xref py py-attr docutils literal"><span class="pre">E6</span></code></a> and so on.</p>
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.COLOUR_CODES">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">COLOUR_CODES</code><em class="property"> = {'silver': silver: x10 m, 10.00 %, 'gold': gold  : x100 m, 5.00 %, 'black': black : d0, x1, 250 ppm, 'brown': brown : d1, x10, 1.00 %, 100 ppm, 'red': red   : d2, x100, 2.00 %, 50 ppm, 'orange': orange: d3, x1 k, 15 ppm, 'yellow': yellow: d4, x10 k, 5.00 %, 25 ppm, 'green': green : d5, x100 k, 0.50 %, 20 ppm, 'blue': blue  : d6, x1 M, 0.25 %, 10 ppm, 'violet': violet: d7, x10 M, 0.10 %, 5 ppm, 'grey': grey  : d8, x100 M, 0.05 %, 1 ppm, 'white': white : d9, x1 G}</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.COLOUR_CODES" title="Permalink to this definition">¶</a></dt>
+<dd><p>This dictionnary maps the colour name and their <a class="reference internal" href="#PyResistorColorCode.ResistorColourCode.ColourCode" title="PyResistorColorCode.ResistorColourCode.ColourCode"><code class="xref py py-class docutils literal"><span class="pre">ColourCode</span></code></a> instance.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.COLOUR_NAMES">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">COLOUR_NAMES</code><em class="property"> = ('silver', 'gold', 'black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'grey', 'white')</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.COLOUR_NAMES" title="Permalink to this definition">¶</a></dt>
+<dd><p>This list defines the ordered set of colours.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="PyResistorColorCode.ResistorColourCode.ColourCode">
+<em class="property">class </em><code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">ColourCode</code><span class="sig-paren">(</span><em>colour_name</em>, <em>digit</em>, <em>multiplier</em>, <em>tolerance</em>, <em>temperature_coefficient</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#ColourCode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.ColourCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This class defines the meaning of a colour for the digit, the multiplier, the tolerance and
+the temperature coefficient.</p>
+<p>The protocol <em>repr</em> is implemented.</p>
+<p>Public attributes:</p>
+<blockquote>
+<div><p><code class="xref py py-attr docutils literal"><span class="pre">colour_name</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">digit</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">multiplier</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">tolerance</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">temperature_coefficient</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.E12">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">E12</code><em class="property"> = &lt;PyResistorColorCode.ResistorColourCode.ValuesSeries object&gt;</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.E12" title="Permalink to this definition">¶</a></dt>
+<dd><p>E12 series</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.E192">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">E192</code><em class="property"> = &lt;PyResistorColorCode.ResistorColourCode.ValuesSeries object&gt;</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.E192" title="Permalink to this definition">¶</a></dt>
+<dd><p>E192 series</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.E24">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">E24</code><em class="property"> = &lt;PyResistorColorCode.ResistorColourCode.ValuesSeries object&gt;</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.E24" title="Permalink to this definition">¶</a></dt>
+<dd><p>E24 series</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.E48">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">E48</code><em class="property"> = &lt;PyResistorColorCode.ResistorColourCode.ValuesSeries object&gt;</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.E48" title="Permalink to this definition">¶</a></dt>
+<dd><p>E48 series</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.E6">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">E6</code><em class="property"> = &lt;PyResistorColorCode.ResistorColourCode.ValuesSeries object&gt;</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.E6" title="Permalink to this definition">¶</a></dt>
+<dd><p>E6 series</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.E96">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">E96</code><em class="property"> = &lt;PyResistorColorCode.ResistorColourCode.ValuesSeries object&gt;</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.E96" title="Permalink to this definition">¶</a></dt>
+<dd><p>E96 series</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="PyResistorColorCode.ResistorColourCode.Resistor">
+<em class="property">class </em><code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">Resistor</code><span class="sig-paren">(</span><em>value=None</em>, <em>number_of_digits=None</em>, <em>digit1=0</em>, <em>digit2=0</em>, <em>digit3=None</em>, <em>multiplier=None</em>, <em>tolerance=None</em>, <em>temperature_coefficient=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#Resistor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.Resistor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This class represents a resitor.</p>
+<p>Public attributes:</p>
+<blockquote>
+<div><p><code class="xref py py-attr docutils literal"><span class="pre">value</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">number_of_digits</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">digit1</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">digit2</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">digit3</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">multiplier</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">digit1_colour</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">digit2_colour</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">digit3_colour</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">multiplier_colour</span></code></p>
+<dl class="docutils">
+<dt><code class="xref py py-attr docutils literal"><span class="pre">significant_digits</span></code></dt>
+<dd>The resitor values is equal to significant_digits * multiplier.</dd>
+</dl>
+<p><code class="xref py py-attr docutils literal"><span class="pre">series</span></code></p>
+</div></blockquote>
+<dl class="method">
+<dt id="PyResistorColorCode.ResistorColourCode.Resistor.digit_colour_iterator">
+<code class="descname">digit_colour_iterator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#Resistor.digit_colour_iterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.Resistor.digit_colour_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a iterator over the colours of the resistance value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="PyResistorColorCode.ResistorColourCode.Resistor.value_range">
+<code class="descname">value_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#Resistor.value_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.Resistor.value_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the resistance range according to the resistance tolerance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PyResistorColorCode.ResistorColourCode.ResistorDecoder">
+<em class="property">class </em><code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">ResistorDecoder</code><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#ResistorDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.ResistorDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This class implements a resistor decoder using an inference algorithm:</p>
+<ul class="simple">
+<li>The given list of colours doesn’t require to be oriented (code polarity), both orientation
+Right-Left and Left-Right are tested (bidirectional inference),</li>
+<li>At least three colours must be provided (two digits colour and the multiplier colour),</li>
+<li>The colours are interpreted by priority as resistance value, then tolerance and finally
+temperature coefficient.</li>
+<li>The resistance value must exists in a series and its tolerance must be defined if there is a
+colour assigned to it.</li>
+</ul>
+<dl class="method">
+<dt id="PyResistorColorCode.ResistorColourCode.ResistorDecoder.decode">
+<code class="descname">decode</code><span class="sig-paren">(</span><em>colour_names</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#ResistorDecoder.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.ResistorDecoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode a resistor from the given list of colour <em>colour_names</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.TEMPERATURE_COEFFICIENTS">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">TEMPERATURE_COEFFICIENTS</code><em class="property"> = {'silver': None, 'gold': None, 'black': 250, 'brown': 100, 'red': 50, 'orange': 15, 'yellow': 25, 'green': 20, 'blue': 10, 'violet': 5, 'grey': 1, 'white': None}</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.TEMPERATURE_COEFFICIENTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>This dictionnary defines for each colour the temperature coefficients in ppm/K.  Some colours are not assigned.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="PyResistorColorCode.ResistorColourCode.TOLERANCES">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">TOLERANCES</code><em class="property"> = {'silver': 10, 'gold': 5, 'black': None, 'brown': 1, 'red': 2, 'orange': None, 'yellow': 5, 'green': 0.5, 'blue': 0.25, 'violet': 0.1, 'grey': 0.05, 'white': None, 'none': 20}</em><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.TOLERANCES" title="Permalink to this definition">¶</a></dt>
+<dd><p>This dictionnary defines for each colour the tolerance values in percent.  Some colours are not assigned.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="PyResistorColorCode.ResistorColourCode.ValuesSeries">
+<em class="property">class </em><code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">ValuesSeries</code><span class="sig-paren">(</span><em>name</em>, <em>number_of_digits</em>, <em>tolerances</em>, <em>values</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#ValuesSeries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.ValuesSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This class defines the properties of resistor value series like the standardised E6, E12, E24,
+E48, E96 and E192 resistor series values.</p>
+<p>The parameter <em>name</em> gives the name of the series, the parameter <em>number_of_digits</em> defines the
+number of digits of the values, the parameter <em>tolerances</em> gives the list of tolerances and
+<em>values</em> gives the series of values.</p>
+<p>Public attributes:</p>
+<blockquote>
+<div><p><code class="xref py py-attr docutils literal"><span class="pre">name</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">number_of_digits</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">tolerances</span></code></p>
+<p><code class="xref py py-attr docutils literal"><span class="pre">values</span></code></p>
+</div></blockquote>
+<p>The name of the series can be retrieved using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">E6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The number of values is given by:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">E6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can test if a value is in the series using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">10</span> <span class="ow">in</span> <span class="n">E6</span>
+</pre></div>
+</div>
+<p>We can compare two series using the order relation on their number of values, for
+example E6 &lt; E12 is True.</p>
+<dl class="method">
+<dt id="PyResistorColorCode.ResistorColourCode.ValuesSeries.tolerance_max">
+<code class="descname">tolerance_max</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#ValuesSeries.tolerance_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.ValuesSeries.tolerance_max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the maximum tolerance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="PyResistorColorCode.ResistorColourCode.ValuesSeries.tolerance_min">
+<code class="descname">tolerance_min</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#ValuesSeries.tolerance_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.ValuesSeries.tolerance_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the minimum tolerance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="PyResistorColorCode.ResistorColourCode.format_value">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">format_value</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#format_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.format_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string representation of a number <em>x</em> using the multiplier m, k, M and G, for example
+the number 1230 will be formated as 1.23 k.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="PyResistorColorCode.ResistorColourCode.series_iterator">
+<code class="descclassname">PyResistorColorCode.ResistorColourCode.</code><code class="descname">series_iterator</code><span class="sig-paren">(</span><em>number_of_digits_min=2</em>, <em>number_of_digits_max=3</em>, <em>tolerance_min=1</em>, <em>tolerance_max=5</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/PyResistorColorCode/ResistorColourCode.html#series_iterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PyResistorColorCode.ResistorColourCode.series_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator over the series that match the given constraints on the number of digits
+range and the tolerance ranges.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ResistorDecoderApplication.html" class="btn btn-neutral float-right" title="2.1.7. ResistorDecoderApplication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Math.html" class="btn btn-neutral" title="2.1.5. Math" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Fabrice Salvaire.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../static/jquery.js"></script>
+      <script type="text/javascript" src="../../static/underscore.js"></script>
+      <script type="text/javascript" src="../../static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../static/hidecode.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

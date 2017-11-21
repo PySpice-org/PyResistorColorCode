@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PyResistorColorCode.ResistorWidget &mdash; PyResistorColorCode 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../static/css/PyResistorColorCode.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PyResistorColorCode 1.0.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PyResistorColorCode
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">1. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference-manual.html">2. API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyResistorColorCode</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyResistorColorCode.ResistorWidget</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyResistorColorCode.ResistorWidget</h1><div class="highlight"><pre>
+<span></span><span class="c1">####################################################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># PyResistorColorCode - Python Electronic Tools.</span>
+<span class="c1"># Copyright (C) 2012 Salvaire Fabrice</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="c1">####################################################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;This modules provides GUI widgets for resistors.&quot;&quot;&quot;</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="k">import</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtWidgets</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtCore</span> <span class="k">import</span> <span class="n">pyqtSignal</span><span class="p">,</span> <span class="n">pyqtSlot</span><span class="p">,</span> <span class="n">Qt</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="kn">from</span> <span class="nn">PyResistorColorCode.GuiTools</span> <span class="k">import</span> <span class="n">translate</span>
+<span class="kn">from</span> <span class="nn">PyResistorColorCode.ResistorColourCode</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">COLOUR_NAMES</span><span class="p">,</span> <span class="n">Resistor</span><span class="p">,</span> <span class="n">ResistorDecoder</span><span class="p">,</span> <span class="n">format_value</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">PyResistorColorCode.Config</span> <span class="k">as</span> <span class="nn">Config</span>
+
+<span class="c1">####################################################################################################</span>
+
+<span class="n">_CENTERED_ALIGNEMENT</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignHCenter</span> <span class="o">|</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignVCenter</span>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="ResistorPixmap"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.ResistorPixmap">[docs]</a><span class="k">class</span> <span class="nc">ResistorPixmap</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;This class implements a resistor painter.&quot;&quot;&quot;</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resistor</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resitor</span> <span class="o">=</span> <span class="n">resistor</span>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="ResistorPixmap.paint"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.ResistorPixmap.paint">[docs]</a>    <span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">rect</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Paint the resistor.&quot;&quot;&quot;</span>
+
+        <span class="n">lead_size</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="n">body_line_width</span> <span class="o">=</span> <span class="mf">1.5</span>
+        <span class="n">band_width</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">body_corner_radius</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">small_band_gap</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">band_width</span>
+        <span class="n">large_band_gap</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">small_band_gap</span> <span class="o">-</span> <span class="n">small_band_gap</span>
+
+        <span class="n">resistor_width</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">lead_size</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">small_band_gap</span> <span class="o">+</span> <span class="n">large_band_gap</span>
+        <span class="k">if</span> <span class="n">rect</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">resistor_width</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">x_left</span><span class="p">,</span> <span class="n">x_right</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">left</span><span class="p">(),</span> <span class="n">rect</span><span class="o">.</span><span class="n">right</span><span class="p">()</span>
+        <span class="c1"># x_right = x_left + resistor_width</span>
+        <span class="n">y_middle</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">center</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">()</span>
+
+        <span class="n">painter</span><span class="o">.</span><span class="n">setRenderHint</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPainter</span><span class="o">.</span><span class="n">Antialiasing</span><span class="p">)</span>
+        <span class="n">painter</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPen</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">body_line_width</span><span class="p">))</span>
+        <span class="n">painter</span><span class="o">.</span><span class="n">setBrush</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">resistor_body_colour</span><span class="p">)</span>
+        <span class="n">box_rect</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">adjusted</span><span class="p">(</span><span class="n">lead_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">lead_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">painter</span><span class="o">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">x_left</span><span class="p">,</span> <span class="n">y_middle</span><span class="p">,</span> <span class="n">x_right</span><span class="p">,</span> <span class="n">y_middle</span><span class="p">)</span>
+        <span class="n">painter</span><span class="o">.</span><span class="n">drawRoundedRect</span><span class="p">(</span><span class="n">box_rect</span><span class="p">,</span> <span class="n">body_corner_radius</span><span class="p">,</span> <span class="n">body_corner_radius</span><span class="p">)</span>
+        <span class="n">x_band</span> <span class="o">=</span> <span class="n">box_rect</span><span class="o">.</span><span class="n">left</span><span class="p">()</span> <span class="o">+</span> <span class="n">small_band_gap</span>
+        <span class="n">y_band_top</span><span class="p">,</span> <span class="n">y_band_bottom</span> <span class="o">=</span> <span class="n">box_rect</span><span class="o">.</span><span class="n">top</span><span class="p">()</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">box_rect</span><span class="o">.</span><span class="n">bottom</span><span class="p">()</span> <span class="o">+</span><span class="mi">1</span>
+
+        <span class="k">def</span> <span class="nf">paint_band</span><span class="p">(</span><span class="n">colour</span><span class="p">):</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPen</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">COLOURS</span><span class="p">[</span><span class="n">colour</span><span class="p">],</span> <span class="n">band_width</span><span class="p">))</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">x_band</span><span class="p">,</span> <span class="n">y_band_top</span><span class="p">,</span> <span class="n">x_band</span><span class="p">,</span> <span class="n">y_band_bottom</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">colour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resitor</span><span class="o">.</span><span class="n">digit_colour_iterator</span><span class="p">():</span>
+            <span class="n">paint_band</span><span class="p">(</span><span class="n">colour</span><span class="p">)</span>
+            <span class="n">x_band</span> <span class="o">+=</span> <span class="n">small_band_gap</span>
+        <span class="n">x_band</span> <span class="o">+=</span> <span class="n">large_band_gap</span>
+        <span class="k">for</span> <span class="n">colour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resitor</span><span class="o">.</span><span class="n">tolerance_colour</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resitor</span><span class="o">.</span><span class="n">temperature_coefficient_colour</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">colour</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">paint_band</span><span class="p">(</span><span class="n">colour</span><span class="p">)</span>
+                <span class="n">x_band</span> <span class="o">+=</span> <span class="n">small_band_gap</span></div></div>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="ResistorImageDelegate"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.ResistorImageDelegate">[docs]</a><span class="k">class</span> <span class="nc">ResistorImageDelegate</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QStyledItemDelegate</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;This class implements an item delegate that paint a resistor.&quot;&quot;&quot;</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">margin</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">ResistorImageDelegate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_margin</span> <span class="o">=</span> <span class="n">margin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="ResistorImageDelegate.sizeHint"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.ResistorImageDelegate.sizeHint">[docs]</a>    <span class="k">def</span> <span class="nf">sizeHint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return the size hint.&quot;&quot;&quot;</span>
+
+        <span class="c1"># print &#39;sizeHint&#39;</span>
+
+        <span class="c1"># Fixme: no effect</span>
+
+        <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span></div>
+        <span class="c1"># return self._size + QtCore.QtQize(self._margin, self._margin)*2</span>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="ResistorImageDelegate.paint"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.ResistorImageDelegate.paint">[docs]</a>    <span class="k">def</span> <span class="nf">paint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Paint the resistor.&quot;&quot;&quot;</span>
+
+        <span class="n">resistor_pixmap</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resistor_pixmap</span><span class="p">,</span> <span class="n">ResistorPixmap</span><span class="p">):</span>
+            <span class="c1"># print option.rect.width(), option.rect.height()</span>
+            <span class="n">margin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_margin</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">adjusted</span><span class="p">(</span><span class="n">margin</span><span class="p">,</span> <span class="n">margin</span><span class="p">,</span> <span class="o">-</span><span class="n">margin</span><span class="p">,</span> <span class="o">-</span><span class="n">margin</span><span class="p">)</span>
+            <span class="n">resistor_pixmap</span><span class="o">.</span><span class="n">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">rect</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">ResistorImageDelegate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">paint</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></div></div>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="ColourMatrix"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.ColourMatrix">[docs]</a><span class="k">class</span> <span class="nc">ColourMatrix</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QObject</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;This class implements a colour matrix where the columns represents the resistor colour bands and</span>
+<span class="sd">    the rows all the possible colours and the undefined state.  Each band column is made of a group</span>
+<span class="sd">    of exclusive checkable buttons.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_NUMBER_OF_BANDS</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">_CHECKED_TEXT</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
+    <span class="n">_BAND_PIXMAP_HEIGHT</span><span class="p">,</span> <span class="n">_BAND_PIXMAP_WIDTH</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span>
+
+    <span class="c1">#: Value changed signal.</span>
+    <span class="n">value_changed</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColourMatrix</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_colour_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">COLOUR_NAMES</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;none&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_colour_to_row</span> <span class="o">=</span> <span class="p">{</span><span class="n">colour</span><span class="p">:</span><span class="n">row</span> <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">colour</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colour_names</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_band_status</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;none&#39;</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_NUMBER_OF_BANDS</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_pixmaps</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_widget</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_band_iterator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return an iterator over the band indexes.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_NUMBER_OF_BANDS</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_init_pixmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Initialise the colour pixmaps that represents the resistor colour bands.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_band_pixmaps</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">colour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colour_names</span><span class="p">:</span>
+            <span class="n">pixmap</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_BAND_PIXMAP_WIDTH</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_BAND_PIXMAP_HEIGHT</span><span class="p">)</span>
+            <span class="n">pixmap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">COLOURS</span><span class="p">[</span><span class="n">colour</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_band_pixmaps</span><span class="p">[</span><span class="n">colour</span><span class="p">]</span> <span class="o">=</span> <span class="n">pixmap</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_init_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Initialise a cell.&quot;&quot;&quot;</span>
+
+        <span class="n">button</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QToolButton</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="n">button</span><span class="o">.</span><span class="n">setCheckable</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">row</span> <span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">band</span> <span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">_CENTERED_ALIGNEMENT</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">colour</span> <span class="o">!=</span> <span class="s1">&#39;none&#39;</span><span class="p">:</span>
+            <span class="n">palette</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPalette</span><span class="p">()</span>
+            <span class="n">brush</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QBrush</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">COLOURS</span><span class="p">[</span><span class="n">colour</span><span class="p">])</span>
+            <span class="n">palette</span><span class="o">.</span><span class="n">setBrush</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPalette</span><span class="o">.</span><span class="n">Active</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPalette</span><span class="o">.</span><span class="n">Button</span><span class="p">,</span> <span class="n">brush</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">colour</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">):</span>
+                <span class="n">brush</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QBrush</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">white</span><span class="p">)</span>
+                <span class="n">palette</span><span class="o">.</span><span class="n">setBrush</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPalette</span><span class="o">.</span><span class="n">Active</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPalette</span><span class="o">.</span><span class="n">ButtonText</span><span class="p">,</span> <span class="n">brush</span><span class="p">)</span>
+            <span class="n">button</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">palette</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_band_button_groups</span><span class="p">[</span><span class="n">band</span><span class="p">]</span><span class="o">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_init_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Initialise the matrix widgets.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QGridLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span><span class="o">.</span><span class="n">setHorizontalSpacing</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span><span class="o">.</span><span class="n">setVerticalSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span><span class="o">.</span><span class="n">setRowMinimumHeight</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_BAND_PIXMAP_HEIGHT</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_button</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;colour_decoder&quot;</span><span class="p">,</span> <span class="s2">&quot;Reset&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reset_button</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">_CENTERED_ALIGNEMENT</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_band_labels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_band_iterator</span><span class="p">():</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">band</span> <span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">_CENTERED_ALIGNEMENT</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_band_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_band_button_groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_band_iterator</span><span class="p">():</span>
+            <span class="n">button_group</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QButtonGroup</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_band_button_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">button_group</span><span class="p">)</span>
+            <span class="n">button_group</span><span class="o">.</span><span class="n">setExclusive</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">callback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_button_clicked_callback</span><span class="p">(</span><span class="n">band</span><span class="p">)</span>
+            <span class="n">button_group</span><span class="o">.</span><span class="n">buttonClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">colour</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colour_names</span><span class="p">):</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">translate</span><span class="p">(</span><span class="s2">&quot;colour_decoder&quot;</span><span class="p">,</span> <span class="n">colour</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">row</span> <span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_band_iterator</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_init_cell</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Return the button for the given band and colour. &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_band_button_groups</span><span class="p">[</span><span class="n">band</span><span class="p">]</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colour_to_row</span><span class="p">[</span><span class="n">colour</span><span class="p">])</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_reset_band_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Reset the band.&quot;&quot;&quot;</span>
+
+        <span class="n">colour</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_band_status</span><span class="p">[</span><span class="n">band</span><span class="p">]</span>
+        <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_button</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+        <span class="n">button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_set_band_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Set the colour of a band and emit the value changed signal.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_band_button</span><span class="p">(</span><span class="n">band</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_band_status</span><span class="p">[</span><span class="n">band</span><span class="p">]</span> <span class="o">=</span> <span class="n">colour</span>
+        <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_button</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+        <span class="n">button</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_CHECKED_TEXT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_emit_value_changed</span><span class="p">()</span>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="ColourMatrix.reset"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.ColourMatrix.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Reset the matrix.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_band_iterator</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_band_status</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span></div>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_emit_value_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Emit the value changed signal with the list of bands.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">band</span><span class="p">,</span> <span class="n">colour</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_band_status</span><span class="p">):</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_band_labels</span><span class="p">[</span><span class="n">band</span><span class="p">]</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_band_pixmaps</span><span class="p">[</span><span class="n">colour</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">value_changed</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_band_status</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_make_button_clicked_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return a closure wrapper for the method :meth:`_button_clicked`.&quot;&quot;&quot;</span>
+
+        <span class="c1"># band must be a local variable</span>
+
+        <span class="k">return</span> <span class="k">lambda</span> <span class="n">button</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_button_clicked</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Handle a clicked action on a button cell.&quot;&quot;&quot;</span>
+
+        <span class="n">button_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_band_button_groups</span><span class="p">[</span><span class="n">band</span><span class="p">]</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">button_group</span><span class="o">.</span><span class="n">id</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+        <span class="n">colour</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colour_names</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_band_status</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="ColourMatrix.widget"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.ColourMatrix.widget">[docs]</a>    <span class="k">def</span> <span class="nf">widget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return the grid layout of the matrix.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grid_layout</span></div></div>
+
+<span class="c1">####################################################################################################</span>
+
+<div class="viewcode-block" id="HypothesesTableModel"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.HypothesesTableModel">[docs]</a><span class="k">class</span> <span class="nc">HypothesesTableModel</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QAbstractTableModel</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;This class implements a table model for the hypotheses.&quot;&quot;&quot;</span>
+
+    <span class="n">COLUMNS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;series&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;tolerance&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;temperature coefficient&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;value range&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;colour code&#39;</span><span class="p">,</span>
+               <span class="p">)</span>
+
+    <span class="n">HEADER_DATA</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Value [R]&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Series&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Tolerance [%]&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Temperature Coefficient [ppm/K]&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Value Range [R]&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Colour Code&#39;</span><span class="p">,</span>
+                   <span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="HypothesesTableModel.column_index"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.HypothesesTableModel.column_index">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">column_index</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return the index of the given column name.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">COLUMNS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">column</span><span class="p">)</span></div>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">HypothesesTableModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resistor_decoder</span> <span class="o">=</span> <span class="n">ResistorDecoder</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resistor_pixmaps</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="HypothesesTableModel.update_hypotheses"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.HypothesesTableModel.update_hypotheses">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">update_hypotheses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bands</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Slot to update the hypotheses from the given list of bands.&quot;&quot;&quot;</span>
+
+        <span class="n">colour_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">bands</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;none&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">colour_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resistor_decoder</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">colour_names</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resistor_pixmaps</span> <span class="o">=</span> <span class="p">{</span><span class="nb">id</span><span class="p">(</span><span class="n">resistor</span><span class="p">):</span><span class="n">ResistorPixmap</span><span class="p">(</span><span class="n">resistor</span><span class="p">)</span>
+                                      <span class="k">for</span> <span class="n">resistor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sort_by_series</span><span class="p">()</span>
+            <span class="c1"># print &#39;\n&#39;, colour_names</span>
+            <span class="c1"># for i, hypothesis in enumerate(self._hypotheses):</span>
+            <span class="c1">#     print &quot;hypothese %u: %s&quot; % (i +1, hypothesis)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resistor_pixmaps</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelReset</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span></div>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="HypothesesTableModel.rowCount"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.HypothesesTableModel.rowCount">[docs]</a>    <span class="k">def</span> <span class="nf">rowCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QModelIndex</span><span class="p">()):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return the number of rows.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span><span class="p">)</span></div>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="HypothesesTableModel.columnCount"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.HypothesesTableModel.columnCount">[docs]</a>    <span class="k">def</span> <span class="nf">columnCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QModelIndex</span><span class="p">()):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return the number of columns.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">COLUMNS</span><span class="p">)</span></div>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="HypothesesTableModel.headerData"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.HypothesesTableModel.headerData">[docs]</a>    <span class="k">def</span> <span class="nf">headerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return the header data.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">TextAlignmentRole</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignHCenter</span><span class="o">|</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">))</span>
+
+        <span class="k">elif</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">orientation</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">HEADER_DATA</span><span class="p">[</span><span class="n">section</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">orientation</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Vertical</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">section</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">()</span></div>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="HypothesesTableModel.data"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.HypothesesTableModel.data">[docs]</a>    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Return the cell data.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">index</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">TextAlignmentRole</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignRight</span><span class="o">|</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_display_role_data</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span> <span class="p">()</span></div>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_display_role_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+
+        <span class="n">row</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()</span>
+        <span class="n">resistor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+        <span class="n">column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">COLUMNS</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()]</span>
+
+        <span class="k">if</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="n">format_value</span><span class="p">(</span><span class="n">resistor</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+
+        <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;series&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">resistor</span><span class="o">.</span><span class="n">series</span><span class="p">))</span>
+
+        <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;tolerance&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">resistor</span><span class="o">.</span><span class="n">tolerance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">tolerance_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">resistor</span><span class="o">.</span><span class="n">tolerance</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tolerance_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="n">tolerance_str</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;temperature coefficient&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">resistor</span><span class="o">.</span><span class="n">temperature_coefficient</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">temperature_coefficient_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%u</span><span class="s1"> ppm&#39;</span> <span class="o">%</span> <span class="n">resistor</span><span class="o">.</span><span class="n">temperature_coefficient</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">temperature_coefficient_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="n">temperature_coefficient_str</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;value range&#39;</span><span class="p">:</span>
+            <span class="n">value_range</span> <span class="o">=</span> <span class="n">resistor</span><span class="o">.</span><span class="n">value_range</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">value_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">value_range_str</span> <span class="o">=</span> <span class="p">[</span><span class="n">format_value</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value_range</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">value_range_str</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span> <span class="p">()</span>
+
+        <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;colour code&#39;</span><span class="p">:</span>
+            <span class="n">resistor_pixmap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resistor_pixmaps</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">resistor</span><span class="p">)]</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QVariant</span><span class="p">(</span><span class="n">resistor_pixmap</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_function</span><span class="p">,</span> <span class="n">reverse</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Sort the model with the given sort function and order.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hypotheses</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key_function</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="n">reverse</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_sort_by_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Sort the resistors by values.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sort</span><span class="p">(</span><span class="k">lambda</span> <span class="n">resistor</span><span class="p">:</span> <span class="n">resistor</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">reverse</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+    <span class="k">def</span> <span class="nf">_sort_by_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Sort the resistors by series.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sort</span><span class="p">(</span><span class="k">lambda</span> <span class="n">resistor</span><span class="p">:</span> <span class="n">resistor</span><span class="o">.</span><span class="n">series</span><span class="p">,</span> <span class="n">reverse</span><span class="p">)</span>
+
+    <span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="HypothesesTableModel.sort"><a class="viewcode-back" href="../../api/PyResistorColorCode/ResistorWidget.html#PyResistorColorCode.ResistorWidget.HypothesesTableModel.sort">[docs]</a>    <span class="k">def</span> <span class="nf">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">AscendingOrder</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Sort the model.&quot;&quot;&quot;</span>
+
+        <span class="n">reverse</span> <span class="o">=</span> <span class="n">order</span> <span class="o">!=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AscendingOrder</span>
+        <span class="n">column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">COLUMNS</span><span class="p">[</span><span class="n">column</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sort_by_values</span><span class="p">(</span><span class="n">reverse</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;series&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sort_by_series</span><span class="p">(</span><span class="n">reverse</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Fabrice Salvaire.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../static/jquery.js"></script>
+      <script type="text/javascript" src="../../static/underscore.js"></script>
+      <script type="text/javascript" src="../../static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../static/hidecode.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

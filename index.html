@@ -1,1 +1,304 @@
-My GitHub Page
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="en" name="content-language" />
+<meta content="en" name="language" />
+<meta content="utf-8" name="content-type" />
+<meta content="utf-8 " name="charset" />
+<meta content="Fabrice Salvaire" name="author" />
+<meta content="Fabrice Salvaire " name="copyright" />
+<meta content="all, index, follow, archive " name="robots" />
+<meta content="sphinx" name="generator" />
+<meta content="PyResistorColorCode is a Python module that provides some tools to manage IEC 60062 marking codes for resistors. The associated program ``resistor-decoder`` provides a graphical user interface to help user to decode a resistor colour-coding using an inference algorithm." name="description" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview &mdash; PyResistorColorCode 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="static/css/PyResistorColorCode.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="PyResistorColorCode 1.0.0 documentation" href="#"/>
+        <link rel="next" title="1. Installation" href="installation.html"/> 
+
+  
+  <script src="static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> PyResistorColorCode
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference-manual.html">2. API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">PyResistorColorCode</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Overview</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="images/resistor-decoder.png"><img alt="resistor-decoder program's screenshot" class="align-right" src="_images/resistor-decoder.png" style="width: 667.0999999999999px; height: 553.0px;" /></a>
+<p>PyResistorColorCode is a Python module that provides some tools to manage <a class="reference external" href="http://webstore.iec.ch/webstore/webstore.nsf/artnum/033377!openDocument">IEC 60062</a> marking codes for
+resistors.</p>
+<p>The associated program <strong>resistor-decoder</strong> provides a graphical user interface to help user to
+decode a resistor colour-coding using an inference algorithm. This feature is an enhancement
+compared to a program like <strong>gresistor</strong> which is only a colour-coding calculator.</p>
+<p>I started to develop this software a day where I had to sort a lot of unsorted resistors in a
+jumble. Resistors colour-coding using no more than 3 bands (2 digits and a multiplier) are no too
+difficult to decode when a person is experienced. But for more accurate resistors, it is more
+tricky. Another difficulty arises when it is difficult to recognise the colour of a band, due to an
+inappropriate colour contrast or tone. For strange colour-coding we can in last resort use an
+Ohmmeter to measure the resistance value. But it doesn’t respond to the question what is the
+specification of this resistor: tolerance, temperature coefficient, etc. For all theses reasons, I
+developed an inference algorithm coupled to an graphical user interface to help user to decode
+resistor colour-coding.</p>
+<div class="section" id="inference-algorithm">
+<h2>Inference Algorithm<a class="headerlink" href="#inference-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The inference algorithm works as follow:</p>
+<ul class="simple">
+<li>code orientation (left-right or right-left) doesn’t matter,</li>
+<li>unset bands are not take into account,</li>
+<li>at least 3 colours must be provided: 2 digits and the multiplier,</li>
+<li>colour band are interpreted by priority as:</li>
+</ul>
+<blockquote>
+<div><ol class="arabic simple">
+<li>resistance value,</li>
+<li>resistance tolerance,</li>
+<li>temperature coefficient,</li>
+</ol>
+</div></blockquote>
+<ul class="simple">
+<li>the resistance value must exists in a IEC 60063 series: E6, E12, E48, E96, E192,</li>
+<li>the resistance tolerance must be defined if there is a colour band assigned to it.</li>
+</ul>
+<p>When there is more than one hypothesis for the given input, the hypotheses are sorted by ascending
+precision (series).</p>
+</div>
+</div>
+<div class="section" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#on-windows">1.1. On Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#on-linux">1.2. On Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#on-osx">1.3. On OSX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-from-pypi-repository">1.4. Installation from PyPi Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-a-more-recent-version-from-github">1.5. Install a more recent version from Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-from-source">1.6. Installation from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies">1.7. Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#package-for-linux">1.8. Package for Linux</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference-manual.html">2. API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/PyResistorColorCode.html">2.1. PyResistorColorCode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference-manual.html#indexes">2.2. Indexes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="1. Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Fabrice Salvaire.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="static/hidecode.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
