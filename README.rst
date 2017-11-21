@@ -139,3 +139,21 @@ Credits
 =======
 
 Authors: `Fabrice Salvaire <http://fabrice-salvaire.fr>`_
+
+News
+====
+
+.. -*- Mode: rst -*-
+
+
+.. no title here
+
+V1 2017-11-21
+-------------
+
+Ported to Python 3 and PyQt5
+
+V0 2012-05-20
+-------------
+
+Started project

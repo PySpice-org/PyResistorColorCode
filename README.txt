@@ -40,3 +40,8 @@ Credits
 =======
 
 Authors: `Fabrice Salvaire <http://fabrice-salvaire.fr>`_
+
+News
+====
+
+.. include:: news.txt

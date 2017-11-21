@@ -34,6 +34,7 @@ Inference Algorithm
   :numbered:
 
   installation
+  news
   reference-manual
 
 .. End

@@ -1,0 +1,16 @@
+.. -*- Mode: rst -*-
+
+.. include:: abbreviation.txt
+.. include:: project-links.txt
+
+.. no title here
+
+V1 2017-11-21
+-------------
+
+Ported to Python 3 and PyQt5
+
+V0 2012-05-20
+-------------
+
+Started project
