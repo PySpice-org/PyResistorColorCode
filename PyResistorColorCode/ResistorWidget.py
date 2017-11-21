@@ -22,8 +22,8 @@
 
 ####################################################################################################
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import pyqtSignal, pyqtSlot, Qt
+from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5.QtCore import pyqtSignal, pyqtSlot, Qt
 
 ####################################################################################################
 
@@ -93,7 +93,7 @@ class ResistorPixmap(object):
 
 ####################################################################################################
 
-class ResistorImageDelegate(QtGui.QStyledItemDelegate):
+class ResistorImageDelegate(QtWidgets.QStyledItemDelegate):
 
     """This class implements an item delegate that paint a resistor."""
 
@@ -112,7 +112,7 @@ class ResistorImageDelegate(QtGui.QStyledItemDelegate):
 
         """Return the size hint."""
 
-        print 'sizeHint'
+        # print 'sizeHint'
 
         # Fixme: no effect
 
@@ -125,7 +125,7 @@ class ResistorImageDelegate(QtGui.QStyledItemDelegate):
 
         """Paint the resistor."""
 
-        resistor_pixmap = index.data().toPyObject()
+        resistor_pixmap = index.data()
         if isinstance(resistor_pixmap, ResistorPixmap):
             # print option.rect.width(), option.rect.height()
             margin = self._margin
@@ -170,7 +170,7 @@ class ColourMatrix(QtCore.QObject):
 
         """Return an iterator over the band indexes."""
 
-        return xrange(self._NUMBER_OF_BANDS)
+        return range(self._NUMBER_OF_BANDS)
 
     ###############################################
 
@@ -190,7 +190,7 @@ class ColourMatrix(QtCore.QObject):
 
         """Initialise a cell."""
 
-        button = QtGui.QToolButton(parent)
+        button = QtWidgets.QToolButton(parent)
         button.setCheckable(True)
         self._grid_layout.addWidget(button, row +1, band +1, 1, 1, _CENTERED_ALIGNEMENT)
         if colour != 'none':
@@ -209,31 +209,31 @@ class ColourMatrix(QtCore.QObject):
 
         """Initialise the matrix widgets."""
 
-        self._grid_layout = QtGui.QGridLayout()
+        self._grid_layout = QtWidgets.QGridLayout()
         self._grid_layout.setHorizontalSpacing(10)
         self._grid_layout.setVerticalSpacing(0)
         self._grid_layout.setRowMinimumHeight(0, int(1.5 * self._BAND_PIXMAP_HEIGHT))
 
-        self._reset_button = QtGui.QPushButton(parent)
+        self._reset_button = QtWidgets.QPushButton(parent)
         self._reset_button.setText(translate("colour_decoder", "Reset"))
         self._reset_button.clicked.connect(self.reset)
         self._grid_layout.addWidget(self._reset_button, 0, 0, 1, 1, _CENTERED_ALIGNEMENT)
 
         self._band_labels = []
         for band in self._band_iterator():
-            label = QtGui.QLabel(parent)
+            label = QtWidgets.QLabel(parent)
             self._grid_layout.addWidget(label, 0, band +1, 1, 1, _CENTERED_ALIGNEMENT)
             self._band_labels.append(label)
 
         self._band_button_groups = []
         for band in self._band_iterator():
-            button_group = QtGui.QButtonGroup(parent)
+            button_group = QtWidgets.QButtonGroup(parent)
             self._band_button_groups.append(button_group)
             button_group.setExclusive(True)
             callback = self._make_button_clicked_callback(band)
             button_group.buttonClicked.connect(callback)
         for row, colour in enumerate(self._colour_names):
-            label = QtGui.QLabel(parent)
+            label = QtWidgets.QLabel(parent)
             label.setText(translate("colour_decoder", colour))
             self._grid_layout.addWidget(label, row +1, 0, 1, 1)
             for band in self._band_iterator():
@@ -382,7 +382,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
         else:
             self._hypotheses = ()
             self._resistor_pixmaps = {}
-        self.reset()
+        self.modelReset.emit()
 
     ###############################################
 
@@ -476,11 +476,11 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
     ###############################################
 
-    def _sort(self, cmp_function, reverse):
+    def _sort(self, key_function, reverse):
 
         """Sort the model with the given sort function and order."""
 
-        self._hypotheses = sorted(self._hypotheses, cmp=cmp_function, reverse=reverse)
+        self._hypotheses = sorted(self._hypotheses, key=key_function, reverse=reverse)
 
     ###############################################
 
@@ -488,7 +488,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
         """Sort the resistors by values."""
 
-        self._sort(Resistor.cmp_values(), reverse)
+        self._sort(lambda resistor: resistor.value, reverse)
 
     ###############################################
 
@@ -496,7 +496,7 @@ class HypothesesTableModel(QtCore.QAbstractTableModel):
 
         """Sort the resistors by series."""
 
-        self._sort(Resistor.cmp_series(), reverse)
+        self._sort(lambda resistor: resistor.series, reverse)
 
     ###############################################
 

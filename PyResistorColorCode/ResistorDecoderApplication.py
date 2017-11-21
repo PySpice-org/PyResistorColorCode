@@ -25,7 +25,7 @@
 import os
 import sys
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 
 ####################################################################################################
 
@@ -36,7 +36,7 @@ import PyResistorColorCode.Help as Help
 
 ####################################################################################################
 
-class Application(QtGui.QApplication):
+class Application(QtWidgets.QApplication):
 
     """This class implements the application."""
 
@@ -57,7 +57,7 @@ class Application(QtGui.QApplication):
 
         """ Initialise the main window. """
 
-        self._main_window = QtGui.QMainWindow()
+        self._main_window = QtWidgets.QMainWindow()
         self._main_window.setObjectName('main_window')
         self._main_window.resize(1024, 800)
         self._main_window.setWindowTitle(self._application_name)
@@ -65,7 +65,7 @@ class Application(QtGui.QApplication):
         svg_file = os.path.join(ConfigInstall.share_directory, 'icons/resistor.svg')
         self._main_window.setWindowIcon(QtGui.QIcon(svg_file))
 
-        self._status_bar = QtGui.QStatusBar(self._main_window)
+        self._status_bar = QtWidgets.QStatusBar(self._main_window)
         self._main_window.setStatusBar(self._status_bar)
 
         self._init_widget()
@@ -78,15 +78,15 @@ class Application(QtGui.QApplication):
 
         """Initialise widgets."""
 
-        central_widget = QtGui.QWidget(self._main_window)
-        self._vertical_layout = QtGui.QVBoxLayout(central_widget)
+        central_widget = QtWidgets.QWidget(self._main_window)
+        self._vertical_layout = QtWidgets.QVBoxLayout(central_widget)
         self._main_window.setCentralWidget(central_widget)
 
         self._init_colour_matrix_widget()
         self._init_hypotheses_widget()
         self._colour_matrix.value_changed.connect(self._hypotheses_table_model.update_hypotheses)
 
-        spacer_item = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        spacer_item = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self._vertical_layout.addItem(spacer_item)
 
     ###############################################
@@ -95,7 +95,7 @@ class Application(QtGui.QApplication):
 
         """Initialise the actions."""
 
-        self._about_action = QtGui.QAction(self._main_window)
+        self._about_action = QtWidgets.QAction(self._main_window)
         self._about_action.setText(translate('colour_decoder', 'About'))
         self._about_action.triggered.connect(self._about)
 
@@ -105,10 +105,10 @@ class Application(QtGui.QApplication):
 
         """Initialise the menu bar."""
 
-        self._menu_bar = QtGui.QMenuBar(self._main_window)
+        self._menu_bar = QtWidgets.QMenuBar(self._main_window)
         self._main_window.setMenuBar(self._menu_bar)
 
-        self._help_menu = QtGui.QMenu(self._menu_bar)
+        self._help_menu = QtWidgets.QMenu(self._menu_bar)
         self._help_menu.setTitle(translate('colour_decoder', 'Help'))
         self._help_menu.addAction(self._about_action)
         self._menu_bar.addAction(self._help_menu.menuAction())
@@ -119,16 +119,16 @@ class Application(QtGui.QApplication):
 
         """Initialise the colour matrix widget."""
 
-        self._colour_code_group_box = QtGui.QGroupBox(self._main_window)
+        self._colour_code_group_box = QtWidgets.QGroupBox(self._main_window)
         self._colour_code_group_box.setTitle(translate("colour_decoder", 'Colour Code'))
         self._vertical_layout.addWidget(self._colour_code_group_box)
 
-        horizontal_layout = QtGui.QHBoxLayout(self._colour_code_group_box)
+        horizontal_layout = QtWidgets.QHBoxLayout(self._colour_code_group_box)
 
         self._colour_matrix = ColourMatrix(self._colour_code_group_box)
         horizontal_layout.addLayout(self._colour_matrix.widget())
 
-        help_label = QtGui.QLabel(self._colour_code_group_box)
+        help_label = QtWidgets.QLabel(self._colour_code_group_box)
         help_label.setTextFormat(QtCore.Qt.RichText)
         help_label.setTextFormat(QtCore.Qt.RichText)
         help_label.setWordWrap(True)
@@ -136,7 +136,7 @@ class Application(QtGui.QApplication):
         help_label.setMargin(25)
         help_label.setAlignment(QtCore.Qt.AlignLeading| QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         help_label.setText(translate("colour_decoder", Help.colour_matrix_help))
-        size_policy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Preferred)
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         help_label.setSizePolicy(size_policy)
         horizontal_layout.addWidget(help_label)
 
@@ -146,20 +146,20 @@ class Application(QtGui.QApplication):
 
         """Initialise the hypothesis table widget."""
 
-        self._hypotheses_group_box = QtGui.QGroupBox(self._main_window)
+        self._hypotheses_group_box = QtWidgets.QGroupBox(self._main_window)
         self._hypotheses_group_box.setTitle(translate("colour_decoder", 'Hypotheses'))
         self._vertical_layout.addWidget(self._hypotheses_group_box)
 
-        horizontal_layout = QtGui.QHBoxLayout(self._hypotheses_group_box)
+        horizontal_layout = QtWidgets.QHBoxLayout(self._hypotheses_group_box)
 
         self._hypotheses_table_model = HypothesesTableModel()
 
-        self._table_view = QtGui.QTableView(self._hypotheses_group_box)
+        self._table_view = QtWidgets.QTableView(self._hypotheses_group_box)
         self._table_view.setAlternatingRowColors(True)
         self._table_view.setSortingEnabled(True)
         self._table_view.setModel(self._hypotheses_table_model)
         self._table_view.resizeColumnsToContents()
-        size_policy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         self._table_view.setSizePolicy(size_policy)
         horizontal_layout.addWidget(self._table_view)
 
@@ -174,4 +174,4 @@ class Application(QtGui.QApplication):
     def _about(self):
 
         message = Help.about_message % {'version':str(Help.version)}
-        QtGui.QMessageBox.about(self._main_window, 'About ' + self._application_name, message)
+        QtWidgets.QMessageBox.about(self._main_window, 'About ' + self._application_name, message)

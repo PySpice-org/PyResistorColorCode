@@ -26,7 +26,7 @@ version = 'V1.0.0'
 
 ####################################################################################################
 
-about_message = u"""
+about_message = """
 <h2>About PyResistorColorCode</h2>
 <p>PyResistorColorCode version is %(version)s</p>
 <p>Copyright &copy; 2012 Fabrice Salvaire</p>

@@ -85,9 +85,9 @@ class ValuesSeries(object):
 
     ##############################################
 
-    def __cmp__(self, other):
+    def __lt__(self, other):
 
-        return cmp(len(self), len(other))
+        return len(self) < len(other)
 
     ##############################################
 
@@ -481,24 +481,6 @@ class Resistor(object):
 
     ##############################################
 
-    @staticmethod
-    def cmp_values():
-
-        """Compare two resistance values."""
-
-        return lambda a, b: cmp(a.value, b.value)
-
-    ##############################################
-
-    @staticmethod
-    def cmp_series():
-
-        """Compare two series."""
-
-        return lambda a, b: cmp(a.series, b.series)
-
-    ##############################################
-
     def _guess_series(self):
 
         """Guess the series of the resistor.
@@ -538,7 +520,7 @@ class Resistor(object):
 
         if self.tolerance is not None:
             return tuple([self.value * (1 + sign * self.tolerance / 100. )
-                          for sign in -1, 1])
+                          for sign in (-1, 1)])
         else:
             return None
 

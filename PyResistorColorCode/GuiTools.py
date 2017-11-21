@@ -22,7 +22,7 @@
 
 ####################################################################################################
 
-from PyQt4 import QtGui
+from PyQt5 import QtWidgets
 
 ####################################################################################################
 
@@ -30,6 +30,9 @@ def translate(context, source_text):
 
     """ Helper function to translate a source text within a context. """
 
-    return QtGui.QApplication.translate(context, source_text,
-                                        None,
-                                        QtGui.QApplication.UnicodeUTF8)
+    return source_text
+
+    # Fixme: AttributeError: type object 'QApplication' has no attribute 'UnicodeUTF8'
+    # return QtWidgets.QApplication.translate(context, source_text,
+    #                                         None,
+    #                                         QtWidgets.QApplication.UnicodeUTF8)
