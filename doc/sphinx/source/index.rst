@@ -13,7 +13,7 @@
  Overview
 ==========
 
-.. image:: /images/resistor-decoder.png
+.. image:: /_static/resistor-decoder.png
    :alt: resistor-decoder program's screenshot
    :scale: 70 %
    :align: right
