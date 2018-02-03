@@ -19,7 +19,7 @@ Overview
 
 .. The user and API documentation is hosted `here <http://fabricesalvaire.github.io/PyResistorColorCode>`_.
 
-.. image:: https://raw.github.com/FabriceSalvaire/PyResistorColorCode/master/doc/sphinx/source/images/resistor-decoder.png
+.. image:: https://raw.github.com/FabriceSalvaire/PyResistorColorCode/master/doc/sphinx/source/_static/resistor-decoder.png
 
 Inference Algorithm
 -------------------
